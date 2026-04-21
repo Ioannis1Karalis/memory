@@ -1,0 +1,25 @@
+@use '../abstracts/variables' as v;
+@use '../abstracts/functions' as f;
+
+body {
+  color: v.$color-text;
+  background-color: v.$color-bg;
+}
+
+.home-screen {
+  &__subtitle {
+    font-family: v.$font-Almarai;
+    font-size: f.rem(48); 
+    font-weight: 400;
+    margin-bottom: f.rem(10);
+    line-height: 1.2;
+  }
+
+  &__title {
+    font-family: v.$font-RedRose;
+    font-size: f.rem(140);
+    font-weight: 700;
+    line-height: 1;
+    margin-bottom: f.rem(60);
+  }
+}

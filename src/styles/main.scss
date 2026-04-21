@@ -1,14 +1,23 @@
+@forward 'abstracts/variables';
+@forward 'abstracts/functions';
+@forward 'abstracts/mixins';
+
+@use 'base/typography';
+@use 'components/button';
+@use 'pages/homescreen';
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html, body {
+    height: 100%;
+    width: 100%;
+}
+
 body {
-    height: 100vh;
-    background-color: blue;
-}
-
-.card {
-    height: 100px;
-    aspect-ratio: 1/1;
-    background-color: black;
-}
-
-.is-flipped{
-    background-color: orange;
+    min-height: 100vh;
+    overflow-x: hidden;
 }

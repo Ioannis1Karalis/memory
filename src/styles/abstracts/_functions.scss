@@ -1,0 +1,9 @@
+@use "sass:math";
+
+@function rem($pixel) {
+  @if math.is-unitless($pixel) {
+    @return math.div($pixel, 16) * 1rem;
+  } @else {
+    @error 'Fehler in der rem-Funktion: Bitte gib nur die Zahl ein (z.B. 16), ohne die Einheit "px".';
+  }
+}

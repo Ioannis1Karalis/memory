@@ -1,0 +1,48 @@
+@use '../abstracts/variables' as v;
+@use '../abstracts/functions' as f;
+@use '../abstracts/mixins' as m;
+
+.btn {
+  border: none;
+  cursor: pointer;
+  @include m.flex-center;
+  gap: f.rem(12);
+  border-radius: f.rem(8);
+  transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+
+  &--primary {
+    background-color: v.$color-primary;
+    color: v.$color-text-dark;
+    padding: f.rem(18) f.rem(40);
+    font-family: v.$font-Almarai;
+    font-weight: 700;
+    font-size: f.rem(40);
+  }
+
+  &__icon {
+    img {
+      width: f.rem(40);
+      height: auto;
+      transition: transform 0.4s ease;
+    }
+  }
+
+  &__arrow {
+    display: inline-block;
+    transition: transform 0.3s ease, font-weight 0.3s ease;
+  }
+
+  &:hover {
+    transform: scale(1.15); 
+
+    .btn__icon img {
+      transform: rotate(-25deg); 
+    }
+
+    .btn__arrow {
+      transform: translateX(8px);
+      font-weight: 900; 
+      text-shadow: 0.5px 0 0 currentColor, -0.5px 0 0 currentColor;
+    }
+  }
+}
