@@ -14,3 +14,11 @@ function init(){
     }
 }
 
+const homeScreen = document.getElementById('home-screen');
+const settingsScreen = document.getElementById('settings-screen');
+const playBtn = document.getElementById('start-game');
+
+playBtn?.addEventListener('click', () => {
+    homeScreen?.classList.add('hidden');
+    settingsScreen?.classList.remove('hidden');
+});

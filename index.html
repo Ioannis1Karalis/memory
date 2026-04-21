@@ -1,33 +1,108 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="de">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>Memory</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400&family=Red+Rose:wght@700&display=swap" rel="stylesheet">
-</head>
-<body>
-
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400&family=Red+Rose:wght@700&display=swap" rel="stylesheet"/>
+  </head>
+  <body>
     <div id="app">
       <section id="home-screen" class="home-screen">
-            <img src="/assets/controller-bg.png" alt="" class="home-screen__bg-icon">        
+        <img src="/assets/controller-bg.png" alt="Controller Background" class="home-screen__bg-icon"/>
         <div class="home-screen__content">
           <p class="home-screen__subtitle">It's play time.</p>
           <h1 class="home-screen__title">Ready to play?</h1>
-          
-            <button class="btn btn--primary" id="start-game">
-                <span class="btn__icon">
-                    <img src="/assets/controller.png" alt="Controller">
-                </span>
-                Play <span class="btn__arrow">&rarr;</span>
-            </button>
+
+          <button class="btn btn--primary" id="start-game">
+            <span class="btn__icon">
+              <img src="/assets/controller.png" alt="Controller"/>
+            </span>
+            Play <span class="btn__arrow">&rarr;</span>
+          </button>
         </div>
       </section>
 
-      <section id="settings-screen" class="hidden"></section>
+      <section id="settings-screen" class="settings-page hidden">
+        <div class="settings-page__container">
+          <div class="settings-page__options">
+            <h2 class="settings-page__title">Settings</h2>
+
+            <div class="option-group">
+              <h3 class="option-group__label">
+                <img src="./public/assets/palette.png" alt="Palette"> Game themes
+              </h3>
+              <label class="custom-radio">
+                <input type="radio" name="theme" value="code-vibes" checked/>
+                <span class="radio-text">Code vibes theme</span>
+              </label>
+              <label class="custom-radio">
+                <input type="radio" name="theme" value="gaming"/>
+                <span class="radio-text">Gaming theme</span>
+              </label>
+              <label class="custom-radio">
+                <input type="radio" name="theme" value="gaming"/>
+                <span class="radio-text">Foods theme</span>
+              </label>
+            </div>
+
+            <div class="option-group">
+              <h3 class="option-group__label">
+                <img src="./public/assets/chess_pawn.png" alt="Chess Pawn"> Choose player
+              </h3>
+              <label class="custom-radio">
+                <input type="radio" name="player" value="blue" checked/>
+                <span class="radio-text">Blue</span>
+              </label>
+              <label class="custom-radio">
+                <input type="radio" name="player" value="orange"/>
+                <span class="radio-text">Orange</span>
+              </label>
+            </div>
+
+            <div class="option-group">
+              <h3 class="option-group__label">
+                <img src="./public/assets/board.png" alt="Board">Board size
+              </h3>
+              <label class="custom-radio">
+                <input type="radio" name="size" value="16" checked/>
+                <span class="radio-text">16 cards</span>
+              </label>
+              <label class="custom-radio">
+                <input type="radio" name="size" value="16"/>
+                <span class="radio-text">24 cards</span>
+              </label>
+              <label class="custom-radio">
+                <input type="radio" name="size" value="16"/>
+                <span class="radio-text">36 cards</span>
+              </label>
+            </div>
+          </div>
+
+          <div class="settings-page__preview">
+            <div class="preview-box">
+              <img src="/assets/imgs/preview-mockup.png" alt="Preview" />
+            </div>
+          </div>
+        </div>
+
+        <div class="settings-page__selection">
+          <div class="summary-item">Game theme</div>
+          <div class="summary-divider">/</div>
+          <div class="summary-item">Player</div>
+          <div class="summary-divider">/</div>
+          <div class="summary-item">Board size</div>
+          <button class="btn btn--secondary" id="start-actual-game"> 
+            <span  class="btn__icon">
+              <img src="./public/assets/start.png" alt="start">
+            </span>Start
+          </button>
+        </div>
+      </section>
+
       <section id="game-screen" class="hidden"></section>
     </div>
 
     <script type="module" src="/src/main.ts"></script>
-</body>
+  </body>
 </html>

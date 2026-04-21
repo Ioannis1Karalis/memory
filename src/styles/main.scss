@@ -4,7 +4,9 @@
 
 @use 'base/typography';
 @use 'components/button';
+@use 'components/radio'; 
 @use 'pages/homescreen';
+@use 'pages/settings';
 
 * {
     margin: 0;
@@ -20,4 +22,8 @@ html, body {
 body {
     min-height: 100vh;
     overflow-x: hidden;
+}
+
+.hidden {
+    display: none !important;
 }

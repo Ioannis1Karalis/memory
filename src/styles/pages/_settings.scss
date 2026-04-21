@@ -1,0 +1,62 @@
+@use '../abstracts/variables' as v;
+@use '../abstracts/functions' as f;
+@use '../abstracts/mixins' as m;
+
+.settings-page {
+  background-color: white;
+  width: 100vw;
+  height: 100vh;
+  padding: f.rem(60);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  color: #303131;
+
+  &__container {
+    display: grid;
+    grid-template-columns: 1fr 1fr; 
+    gap: f.rem(40);
+    align-items: start;
+  }
+
+  &__title {
+    font-size: f.rem(54);
+    font-family: v.$font-RedRose;
+    margin-bottom: f.rem(40);
+    position: relative;
+    
+    &::after {
+      content: '';
+      position: absolute;
+      bottom: f.rem(-10);
+      left: 0;
+      width: f.rem(251);
+      height: f.rem(4);
+      background-color: v.$color-primary;
+    }
+  }
+
+  &__selection {
+    background-color: #f5f5f5; 
+    padding: f.rem(20) f.rem(40);
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: f.rem(20);
+    border-radius: f.rem(12);
+    width: f.rem(700);
+  }
+}
+
+.option-group {
+  margin-bottom: f.rem(30);
+  
+  &__label {
+    display: flex;
+    align-items: center;
+    gap: f.rem(10);
+    font-size: f.rem(24);
+    font-family: v.$font-Almarai;
+    margin-bottom: f.rem(15);
+  }
+}
