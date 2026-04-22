@@ -18,10 +18,18 @@
 
 @mixin divider-style($active: false) {
   height: f.rem(50);
-  background-color: v.$color-primary;
-  transform: skewX(-25deg);
   position: relative;
+  background-color: transparent;
   transition: width 0.2s ease-in-out;
+
+  &::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-color: v.$color-primary;
+    transform: skewX(-25deg);
+    transition: all 0.2s ease-in-out;
+  }
 
   @if $active {
     width: f.rem(4) !important;
@@ -31,15 +39,15 @@
       display: block !important; 
       position: absolute;
       bottom: f.rem(-10);
-      left: 40%;
-      transform: translateX(-50%) rotate(50deg);
-      width: f.rem(20);
-      height: f.rem(15);
+      left: f.rem(-11);
+      transform: translateX(-50%) rotate(70deg); 
+      width: f.rem(16); 
+      height: f.rem(16);
       background-color: v.$color-primary;
       z-index: 2;
     }
   } @else {
-    width: f.rem(8) !important;
+    width: f.rem(10) !important; 
     &::after {
       content: none !important;
       display: none !important;
