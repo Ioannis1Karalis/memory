@@ -33,6 +33,19 @@
     }
   }
 
+  &:disabled {
+    background-color: #dcdcdc; // Grauer Hintergrund
+    color: #a0a0a0;            // Grauer Text
+    cursor: not-allowed;       // Verbotsschild-Cursor
+    transform: none;           // Keine Vergrößerung beim Hover
+    pointer-events: none;      // Button reagiert nicht auf Klicks/Hover
+    
+    .btn__icon img {
+      filter: grayscale(1);    // Icon wird auch grau
+      opacity: 0.5;
+    }
+  }
+
   &__icon {
     img {
       height: auto;
