@@ -23,11 +23,11 @@
     padding-top: f.rem(150);
   }
 
-  &__title {
-    font-family: v.$font-RedRose;
-    font-size: f.rem(72);
-    margin-bottom: f.rem(60);
-    position: relative;
+    &__title {
+      font-family: v.$font-RedRose;
+      font-size: f.rem(72);
+      margin-bottom: f.rem(60);
+      position: relative;
 
     &::after {
       content: '';
@@ -62,13 +62,23 @@
 
   &__selection {
     background-color: #f7f7f7;
-    padding: f.rem(20) f.rem(40);
+    padding: f.rem(20) f.rem(20);
     display: flex;
     align-items: center;
     justify-content: flex-end;
     gap: f.rem(20);
-    width: f.rem(670);
+    width: auto;
+    min-height: f.rem(90);
     box-sizing: border-box;
+    align-self: flex-end;
+  }
+
+  &:has(input[name="theme"]:checked) #divider-1 {
+    @include m.divider-style(true);
+  }
+
+  &:has(input[name="player"]:checked) #divider-2 {
+    @include m.divider-style(true);
   }
 }
 
@@ -89,26 +99,13 @@
 }
 
 .summary-divider {
-  width: f.rem(5);
-  height: f.rem(45);
-  background-color: v.$color-primary;
-  transform: skewX(-25deg);
-  position: relative;
-  margin: 0 f.rem(10);
-
-  &::after {
-    content: '';
-    position: absolute;
-    bottom: f.rem(-6);
-    left: f.rem(-6);
-    width: f.rem(18);
-    height: f.rem(11);
-    background-color: v.$color-primary;
-    transform: rotate(50deg);
-  }
+  @include m.divider-style(false);
+  flex-shrink: 0; 
 }
 
 .summary-item {
   font-family: v.$font-Almarai;
   font-size: f.rem(20);
+  white-space: nowrap;
+  flex-shrink: 0;
 }

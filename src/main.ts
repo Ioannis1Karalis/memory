@@ -14,9 +14,6 @@ function init(){
     }
 }
 
-import './styles/main.scss'
-
-// 1. Variablen & Mapping
 const themeImages: Record<string, string> = {
   'code-vibes': '/assets/imgs/code vibes/theme-code-vibes.png',
   'gaming': '/assets/imgs/gaming/theme-gaming.png',
@@ -35,7 +32,7 @@ const updateSettings = () => {
   if (sumPlayer) sumPlayer.textContent = p ? `${p.value.charAt(0).toUpperCase() + p.value.slice(1)} Player` : 'Player';
   if (sumSize) sumSize.textContent = s ? `Board-${s.value} Cards` : 'Board size';
 
-  if (previewImg) previewImg.src = t ? themeImages[t.value] : '/assets/preview-placeholder.png';
+  if (previewImg) previewImg.src = t ? themeImages[t.value] : '/assets/placeholder.png';
   startActualGameBtn.disabled = !(t && p && s);
 };
 
@@ -46,9 +43,9 @@ document.getElementById('start-game')?.addEventListener('click', () => {
   document.getElementById('settings-screen')?.classList.remove('hidden');
 });
 
-document.getElementById('field')?.addEventListener('click', e => {
-  const card = (e.target as HTMLElement).closest('.card');
-  if (card) card.classList.toggle('is-flipped');
-});
+// document.getElementById('field')?.addEventListener('click', e => {
+//   const card = (e.target as HTMLElement).closest('.card');
+//   if (card) card.classList.toggle('is-flipped');
+// });
 
 updateSettings(); 

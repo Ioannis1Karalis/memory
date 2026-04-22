@@ -1,3 +1,6 @@
+@use '../abstracts/functions' as f;
+@use '../abstracts/variables' as v;
+
 @mixin flex-center {
   display: flex;
   justify-content: center;
@@ -10,5 +13,36 @@
   }
   @if $breakpoint == "desktop" {
     @media (min-width: 1024px) { @content; }
+  }
+}
+
+@mixin divider-style($active: false) {
+  height: f.rem(50);
+  background-color: v.$color-primary;
+  transform: skewX(-25deg);
+  position: relative;
+  transition: width 0.2s ease-in-out;
+
+  @if $active {
+    width: f.rem(4) !important;
+    
+    &::after {
+      content: "" !important;
+      display: block !important; 
+      position: absolute;
+      bottom: f.rem(-10);
+      left: 40%;
+      transform: translateX(-50%) rotate(50deg);
+      width: f.rem(20);
+      height: f.rem(15);
+      background-color: v.$color-primary;
+      z-index: 2;
+    }
+  } @else {
+    width: f.rem(8) !important;
+    &::after {
+      content: none !important;
+      display: none !important;
+    }
   }
 }
