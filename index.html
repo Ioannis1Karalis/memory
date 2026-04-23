@@ -1,104 +1,157 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>Memory</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com"/>
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-    <link href="https://fonts.googleapis.com/css2?family=Almarai:wght@400;700&family=Red+Rose:wght@700&display=swap" rel="stylesheet"/>
-  </head>
-  <body>
-    <div id="app">
-      <section id="home-screen" class="home-screen">
-        <img src="/assets/controller-bg.png" alt="Controller Background" class="home-screen__bg-icon"/>
-        <div class="home-screen__content">
-          <p class="home-screen__subtitle">It's play time.</p>
-          <h1 class="home-screen__title">Ready to play?</h1>
-          <button class="btn btn--primary" id="start-game">
-            <span class="btn__icon"><img src="/assets/controller.png" alt="Controller"/></span>
-            Play <span class="btn__arrow">&rarr;</span>
-          </button>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Memory</title>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Almarai:wght@400;700&family=Red+Rose:wght@700&display=swap" rel="stylesheet" />
+</head>
+<body>
+  <div id="app">
+    
+    <section id="home-screen" class="home-screen">
+      <img src="/assets/icons/controller-bg.png" alt="Controller Background" class="home-screen__bg-icon"/>
+      <div class="home-screen__content">
+        <p class="home-screen__subtitle">It's play time.</p>
+        <h1 class="home-screen__title">Ready to play?</h1>
+        <button class="btn btn--primary" id="start-game">
+          <span class="btn__icon">
+            <img src="/assets/icons/controller.png" alt="Controller"/>
+          </span>
+          Play <span class="btn__arrow">&rarr;</span>
+        </button>
+      </div>
+    </section>
+
+    <section id="settings-screen" class="settings-page hidden">
+      <div class="settings-page__container">
+        
+        <div class="settings-page__options">
+          <h2 class="settings-page__title">Settings</h2>
+
+          <div class="option-group">
+            <h3 class="option-group__label"><img src="/assets/icons/palette.png" alt="Palette"/> Game themes</h3>
+            <label class="custom-radio">
+              <input type="radio" name="theme" value="code-vibes" checked/>
+              <span class="radio-text">Code vibes theme</span>
+            </label>
+            <label class="custom-radio">
+              <input type="radio" name="theme" value="gaming"/>
+              <span class="radio-text">Gaming theme</span>
+            </label>
+            <label class="custom-radio">
+              <input type="radio" name="theme" value="foods"/>
+              <span class="radio-text">Foods theme</span>
+            </label>
+          </div>
+
+          <div class="option-group">
+            <h3 class="option-group__label"><img src="/assets/icons/chess_pawn.png" alt="Chess Pawn"/> Choose player</h3>
+            <label class="custom-radio">
+              <input type="radio" name="player" value="blue" checked/>
+              <span class="radio-text">Blue</span>
+            </label>
+            <label class="custom-radio">
+              <input type="radio" name="player" value="orange"/>
+              <span class="radio-text">Orange</span>
+            </label>
+          </div>
+
+          <div class="option-group">
+            <h3 class="option-group__label"><img src="/assets/icons/board.png" alt="Board"/> Board size</h3>
+            <label class="custom-radio">
+              <input type="radio" name="size" value="16" checked/>
+              <span class="radio-text">16 cards</span>
+            </label>
+            <label class="custom-radio">
+              <input type="radio" name="size" value="24"/>
+              <span class="radio-text">24 cards</span>
+            </label>
+            <label class="custom-radio">
+              <input type="radio" name="size" value="36"/>
+              <span class="radio-text">36 cards</span>
+            </label>
+          </div>
         </div>
-      </section>
 
-      <section id="settings-screen" class="settings-page hidden">
-        <div class="settings-page__container">
-          
-          <div class="settings-page__options">
-            <h2 class="settings-page__title">Settings</h2>
-
-            <div class="option-group">
-              <h3 class="option-group__label"><img src="/assets/palette.png" alt="Palette"/> Game themes</h3>
-              <label class="custom-radio">
-                <input type="radio" name="theme" value="code-vibes"/>
-                <span class="radio-text">Code vibes theme</span>
-              </label>
-              <label class="custom-radio">
-                <input type="radio" name="theme" value="gaming"/>
-                <span class="radio-text">Gaming theme</span>
-              </label>
-              <label class="custom-radio">
-                <input type="radio" name="theme" value="foods"/>
-                <span class="radio-text">Foods theme</span>
-              </label>
-            </div>
-
-            <div class="option-group">
-              <h3 class="option-group__label"><img src="/assets/chess_pawn.png" alt="Chess Pawn"/> Choose player</h3>
-              <label class="custom-radio">
-                <input type="radio" name="player" value="blue"/>
-                <span class="radio-text">Blue</span>
-              </label>
-              <label class="custom-radio">
-                <input type="radio" name="player" value="orange"/>
-                <span class="radio-text">Orange</span>
-              </label>
-            </div>
-
-            <div class="option-group">
-              <h3 class="option-group__label"><img src="/assets/board.png" alt="Board"/> Board size</h3>
-              <label class="custom-radio">
-                <input type="radio" name="size" value="16"/>
-                <span class="radio-text">16 cards</span>
-              </label>
-              <label class="custom-radio">
-                <input type="radio" name="size" value="24"/>
-                <span class="radio-text">24 cards</span>
-              </label>
-              <label class="custom-radio">
-                <input type="radio" name="size" value="36"/>
-                <span class="radio-text">36 cards</span>
-              </label>
+        <div class="settings-page__right-col">
+          <div class="settings-page__preview">
+            <div class="preview-box">
+              <img id="theme-preview" src="/assets/placeholder.png" alt="Theme Preview"/>
             </div>
           </div>
 
-          <div class="settings-page__right-col">
-            <div class="settings-page__preview">
-              <div class="preview-box">
-                <img id="theme-preview" src="/assets/placeholder.png" alt="Theme Preview"/>
-              </div>
-            </div>
+          <div class="settings-page__selection">
+            <div class="summary-item"><span id="sum-theme">Theme</span></div>
+            <div class="summary-divider"></div> 
+            <div class="summary-item"><span id="sum-player">Player</span></div>
+            <div class="summary-divider"></div>
+            <div class="summary-item"><span id="sum-size">Board size</span></div>
 
-           <div class="settings-page__selection">
-              <div class="summary-item"><span id="sum-theme">Theme</span></div>
-              <div id="divider-1" class="summary-divider"></div> 
-              <div class="summary-item"><span id="sum-player">Player</span></div>
-              <div id="divider-2" class="summary-divider"></div>
-              <div class="summary-item"><span id="sum-size">Board size</span></div>
-
-              <button class="btn btn--secondary" id="start-actual-game" disabled>
-                <span class="btn__icon"><img src="/assets/start.png" alt="start"/></span>
-                  Start
-              </button>
-            </div>
+            <button class="btn btn--secondary" id="start-actual-game" disabled>
+              <span class="btn__icon">
+                <img src="/assets/icons/start.png" alt="start"/>
+              </span>
+              Start
+            </button>
           </div>
-
         </div>
-      </section>
+      </div>
+    </section>
 
-      <section id="game-screen" class="hidden"></section>
+    <section id="game-screen" class="game-page hidden">
+      <header class="game-page__header">
+        <div class="score-container">
+          <div class="player player--blue">
+            <div class="diamond-icon diamond-icon--blue"></div> Blue <span id="score-blue">0</span>
+          </div>
+          <div class="player player--orange">
+            <div class="diamond-icon diamond-icon--orange"></div> Orange <span id="score-orange">0</span>
+          </div>
+        </div>
+
+        <div class="current-player">
+          Current player: <div class="diamond-icon diamond-icon--blue" id="active-player-diamond"></div>
+        </div>
+
+        <button class="btn--exit" id="exit-game">
+          <img src="/assets/icons/exit.png" alt="exit"> Exit game
+        </button>
+      </header>
+
+      <main id="game-board" class="game-board">
+        </main>
+    </section>
+
+    <div id="exit-modal" class="modal hidden">
+      <div class="modal__overlay"></div>
+      <div class="modal__content">
+        <h2 class="modal__title">Are you sure you want to quit the game?</h2>
+        <div class="modal__actions">
+          <button id="btn-back-to-game" class="btn-modal btn-modal--primary">Back to game</button>
+          <button id="btn-confirm-exit" class="btn-modal btn-modal--secondary">Exit game</button>
+        </div>
+      </div>
     </div>
-    <script type="module" src="/src/main.ts"></script>
-  </body>
+
+    <template id="card-template">
+      <button class="card">
+        <div class="card__inner">
+          <div class="card__face">
+            <img class="img-pattern" src="" alt="Pattern">
+          </div>
+          <div class="card__face card__face--back">
+            <img class="img-content" src="" alt="Card Content">
+          </div>
+        </div>
+      </button>
+    </template>
+
+  </div>
+
+  <script type="module" src="/src/main.ts"></script>
+</body>
 </html>

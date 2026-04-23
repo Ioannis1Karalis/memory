@@ -1,0 +1,112 @@
+@use '../abstracts/variables' as v;
+@use '../abstracts/functions' as f;
+
+.game-page {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: f.rem(60);
+  transition: background-color 0.3s ease;
+
+  &.theme-code-vibes { 
+    background-color: #2d2d2d; 
+    color: white; 
+  }
+
+  &.theme-gaming { 
+    background-color: #1a2a33; 
+    color: white; 
+  }
+
+  &.theme-foods { 
+    background-color: #ffffff; 
+    color: #333; 
+  }
+
+  &__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    max-width: f.rem(1100);
+    margin-bottom: f.rem(50);
+  }
+
+  .score-container {
+    background-color: rgba(255, 255, 255, 0.08);
+    padding: f.rem(12) f.rem(24);
+    border-radius: f.rem(4);
+    display: flex;
+    gap: f.rem(25);
+    font-family: v.$font-Almarai;
+    font-weight: 700;
+    font-size: f.rem(20);
+
+    .player {
+      display: flex;
+      align-items: center;
+      gap: f.rem(10);
+      
+      &--blue { color: #2BB1FF; }
+      &--orange { color: #F58E39; }
+    }
+  }
+
+  .current-player {
+    display: flex;
+    align-items: center;
+    gap: f.rem(12);
+    font-size: f.rem(22);
+    font-weight: 400;
+  }
+
+  .diamond-icon {
+    width: f.rem(14);
+    height: f.rem(14);
+    transform: rotate(45deg);
+    flex-shrink: 0;
+    
+    &--blue { background-color: #2BB1FF; }
+    &--orange { background-color: #F58E39; }
+  }
+
+  .btn--exit {
+    background-color: #86E9D633;
+    border: 1px solid #4DD5BC;
+    color: white;
+    padding: f.rem(12) f.rem(24);
+    display: flex;
+    align-items: center;
+    gap: f.rem(12);
+    font-family: v.$font-Almarai;
+    font-weight: 700;
+    font-size: f.rem(18);
+    cursor: pointer;
+    transition: all 0.2s;
+
+    img { 
+      width: f.rem(20);
+    }
+
+    &:hover {
+      background-color: rgba(255, 255, 255, 0.15);
+      border-color: white;
+    }
+
+    .theme-foods & {
+      border-color: #333;
+      color: #333;
+      img { filter: none; }
+    }
+  }
+}
+
+.game-board {
+  display: grid; 
+  gap: f.rem(14);
+  width: 100%;
+  max-width: f.rem(600);
+  margin: 0 auto;
+  padding: f.rem(20);
+}

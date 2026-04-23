@@ -7,6 +7,9 @@
 @use 'components/radio'; 
 @use 'pages/homescreen';
 @use 'pages/settings';
+@use 'pages/game';
+@use 'components/card';
+@use 'components/modal';
 
 * {
     margin: 0;
@@ -26,5 +29,5 @@ body {
 }
 
 .hidden {
-    display: none !important;
+  display: none !important;
 }
