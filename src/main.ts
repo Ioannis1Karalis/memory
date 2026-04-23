@@ -17,6 +17,11 @@ const exitGameBtnHeader = document.getElementById('exit-game');
 const btnBackToGame = document.getElementById('btn-back-to-game');
 const btnConfirmExit = document.getElementById('btn-confirm-exit');
 
+let flippedCards: HTMLElement[] = [];
+let scores = { blue: 0, orange: 0 };
+let currentPlayer: 'blue' | 'orange' = 'blue';
+let isLocked = false;
+
 const themeImages: Record<string, string> = {
   'code-vibes': '/assets/imgs/code vibes/theme-code-vibes.png',
   'gaming': '/assets/imgs/gaming/theme-gaming.png',
@@ -50,21 +55,23 @@ function getCardValues(size: number): number[] {
 function createCard(val: number, theme: string): HTMLElement {
   const temp = document.getElementById('card-template') as HTMLTemplateElement;
   const clone = temp.content.cloneNode(true) as DocumentFragment;
-  const cardBtn = clone.querySelector('.card') as HTMLElement;
+  const card = clone.querySelector('.card') as HTMLElement;
   const folder = themeFolderMap[theme];
 
-  const pattern = cardBtn.querySelector('.img-pattern') as HTMLImageElement;
-  const content = cardBtn.querySelector('.img-content') as HTMLImageElement;
-  
-  pattern.src = `/assets/imgs/${folder}/cards/${theme}-front.png`;
-  content.src = `/assets/imgs/${folder}/cards/${theme}-${val}.png`;
+  card.setAttribute('data-val', val.toString()); // Wichtig für den Vergleich!
+  (card.querySelector('.img-pattern') as HTMLImageElement).src = `/assets/imgs/${folder}/cards/${theme}-front.png`;
+  (card.querySelector('.img-content') as HTMLImageElement).src = `/assets/imgs/${folder}/cards/${theme}-${val}.png`;
 
-  cardBtn.onclick = () => cardBtn.classList.toggle('is-flipped');
-
-  return cardBtn;
+  card.onclick = () => onCardClick(card); // Nutzt jetzt die neue Logik
+  return card;
 }
 
 function initGame(theme: string, size: number) {
+  scores = { blue: 0, orange: 0 };
+  currentPlayer = 'blue';
+  flippedCards = [];
+  isLocked = false;
+  updateUI();
   if (!gameBoard) return;
   gameBoard.innerHTML = '';
   gameBoard.style.gridTemplateColumns = `repeat(${size === 16 ? 4 : 6}, 1fr)`;
@@ -111,3 +118,54 @@ btnConfirmExit?.addEventListener('click', () => {
 });
 
 updateSettings();
+
+// 1. Aktualisiert die Score-Anzeige und das Diamant-Icon
+function updateUI() {
+  const blueScore = document.getElementById('score-blue');
+  const orangeScore = document.getElementById('score-orange');
+  const diamond = document.getElementById('active-player-diamond');
+  
+  if (blueScore) blueScore.textContent = scores.blue.toString();
+  if (orangeScore) orangeScore.textContent = scores.orange.toString();
+  diamond!.className = `diamond-icon diamond-icon--${currentPlayer}`;
+}
+
+// 2. Logik wenn Karten NICHT gleich sind
+function handleMismatch() {
+  isLocked = true;
+  setTimeout(() => {
+    flippedCards.forEach(c => c.classList.remove('is-flipped'));
+    flippedCards = [];
+    currentPlayer = currentPlayer === 'blue' ? 'orange' : 'blue';
+    isLocked = false;
+    updateUI();
+  }, 1000);
+}
+
+// 3. Logik wenn Karten GLEICH sind
+function handleMatch() {
+  flippedCards.forEach(c => c.classList.add('is-matched'));
+  scores[currentPlayer]++;
+  flippedCards = [];
+  updateUI();
+  // Check win condition here if needed
+}
+
+// 4. Vergleicht die beiden umgedrehten Karten
+function checkMatch() {
+  const [c1, c2] = flippedCards;
+  const val1 = c1.getAttribute('data-val');
+  const val2 = c2.getAttribute('data-val');
+
+  val1 === val2 ? handleMatch() : handleMismatch();
+}
+
+// 5. Die Klick-Funktion (angepasst für createCard)
+function onCardClick(card: HTMLElement) {
+  if (isLocked || flippedCards.includes(card) || card.classList.contains('is-matched')) return;
+
+  card.classList.add('is-flipped');
+  flippedCards.push(card);
+
+  if (flippedCards.length === 2) checkMatch();
+}

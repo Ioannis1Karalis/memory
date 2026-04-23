@@ -17,6 +17,12 @@
     transform: rotateY(180deg);
   }
 
+  &.is-matched &__inner {
+    outline: 4px solid var(--match-color);
+    border-radius: f.rem(8);
+    pointer-events: none; // Karte nicht mehr anklickbar machen
+  }
+
   &__inner {
     position: relative;
     width: 100%;
@@ -44,7 +50,7 @@
 
     &--back {
       transform: rotateY(180deg);
-      background-color: white;
+      
     }
   }
 }
