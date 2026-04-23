@@ -22,6 +22,15 @@ let scores = { blue: 0, orange: 0 };
 let currentPlayer: 'blue' | 'orange' = 'blue';
 let isLocked = false;
 
+let matchedPairs = 0;
+let currentSize = 0;
+const endScreen = document.getElementById('end-screen');
+
+const pawnImages = {
+  blue: '/assets/icons/pawn-winner-blue.png',
+  orange: '/assets/icons/pawn-winner-orange.png'
+};
+
 const themeImages: Record<string, string> = {
   'code-vibes': '/assets/imgs/code vibes/theme-code-vibes.png',
   'gaming': '/assets/imgs/gaming/theme-gaming.png',
@@ -70,6 +79,8 @@ function initGame(theme: string, size: number) {
   scores = { blue: 0, orange: 0 };
   currentPlayer = 'blue';
   flippedCards = [];
+  matchedPairs = 0;   // WICHTIG: Zurücksetzen!
+  currentSize = size; // WICHTIG: Wert speichern!
   isLocked = false;
   updateUI();
   if (!gameBoard) return;
@@ -143,8 +154,11 @@ function handleMismatch() {
 function handleMatch() {
   flippedCards.forEach(c => c.classList.add('is-matched'));
   scores[currentPlayer]++;
+  matchedPairs++;
   flippedCards = [];
   updateUI();
+  if (matchedPairs === currentSize / 2) handleGameOver();
+  //if (matchedPairs >= 1) handleGameOver();
 }
 
 function checkMatch() {
@@ -163,3 +177,37 @@ function onCardClick(card: HTMLElement) {
 
   if (flippedCards.length === 2) checkMatch();
 }
+
+function showWinner() {
+  const winnerName = document.getElementById('winner-name')!;
+  const winnerPawn = document.getElementById('winner-pawn') as HTMLImageElement;
+  const isBlueWin = scores.blue > scores.orange;
+  const winnerColor = isBlueWin ? '#00A3FF' : '#FF8A00'; // Farbe für den Schatten
+
+  winnerName.textContent = isBlueWin ? 'BLUE PLAYER' : 'ORANGE PLAYER';
+  winnerName.className = `end-screen__winner-title text--${isBlueWin ? 'blue' : 'orange'}`;
+
+  // FIX: Bildquelle tauschen und Schattenfarbe anpassen
+  winnerPawn.src = isBlueWin ? pawnImages.blue : pawnImages.orange;
+  winnerPawn.alt = `${isBlueWin ? 'Blauer' : 'Orangener'} Gewinner-Spielfigur`;
+
+  document.getElementById('game-over-view')?.classList.add('hidden');
+  document.getElementById('winner-view')?.classList.remove('hidden');
+}
+
+// 2. Initialisiert das Game Over
+function handleGameOver() {
+  document.getElementById('final-blue')!.textContent = scores.blue.toString();
+  document.getElementById('final-orange')!.textContent = scores.orange.toString();
+  
+  endScreen?.classList.remove('hidden');
+  endScreen!.className = `end-screen theme-${(document.querySelector('input[name="theme"]:checked') as HTMLInputElement).value}`;
+  
+  setTimeout(showWinner, 3000); // Zeigt nach 2 Sek. den Gewinner
+}
+
+document.getElementById('btn-restart')?.addEventListener('click', () => {
+  endScreen?.classList.add('hidden');
+  gameScreen?.classList.add('hidden');
+  settingsScreen?.classList.remove('hidden');
+});

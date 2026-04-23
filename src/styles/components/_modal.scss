@@ -42,28 +42,4 @@
   }
 }
 
-.btn-modal {
-  padding: f.rem(14) f.rem(28);
-  font-family: v.$font-Almarai;
-  font-weight: 700;
-  font-size: f.rem(18);
-  border-radius: f.rem(4);
-  cursor: pointer;
-  border: none;
-  min-width: f.rem(180);
-  transition: opacity 0.2s;
-
-  &:hover { opacity: 0.9; }
-
-  &--primary {
-    background-color: #64ccb4;
-    color: white;
-  }
-
-  &--secondary {
-    background-color: #effcf9;
-    color: #64ccb4;
-    border: 2px solid #64ccb4;
-  }
-}
 

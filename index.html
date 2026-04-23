@@ -126,6 +126,27 @@
         </main>
     </section>
 
+    <section id="end-screen" class="end-screen hidden">
+  <div id="game-over-view" class="end-screen__content">
+    <h1 class="end-screen__title">Game over</h1>
+    <p class="end-screen__label">Final score</p>
+    <div class="end-screen__score-box">
+      <div class="player player--blue"><div class="diamond-icon--blue"></div> Blue <span id="final-blue">0</span></div>
+      <div class="player player--orange"><div class="diamond-icon--orange"></div> Orange <span id="final-orange">0</span></div>
+    </div>
+  </div>
+
+  <div id="winner-view" class="end-screen__content hidden">
+    <img src="/assets/icons/confetti.png" alt="Confetti" class="end-screen__confetti">
+    <p class="end-screen__winner-text">The winner is</p>
+    <h2 id="winner-name" class="end-screen__winner-title">ORANGE PLAYER</h2>
+    <div class="end-screen__winner-icon">
+      <img id="winner-pawn" src="/assets/icons/chess_pawn.png" alt="Pawn">
+    </div>
+    <button id="btn-restart" class="btn--restart">Back to start</button>
+  </div>
+</section>
+
     <div id="exit-modal" class="modal hidden">
       <div class="modal__overlay"></div>
       <div class="modal__content">

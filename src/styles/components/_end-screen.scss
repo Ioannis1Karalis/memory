@@ -1,0 +1,52 @@
+@use '../abstracts/functions' as f;
+@use '../abstracts/variables' as v;
+@use '../abstracts/mixins' as m;
+
+.end-screen {
+  position: fixed; 
+  inset: 0; 
+  background-color: #222;
+  @include m.flex-center; 
+  flex-direction: column; 
+  z-index: 200; 
+  text-align: center;
+  font-family: v.$font-RedRose;
+  font-size: f.rem(40);
+  font-weight: 400;
+
+  &__title {
+    color: var(--theme-color); 
+    text-shadow: 0 4px 0 rgba(0,0,0,0.5); 
+    margin-bottom: f.rem(40);
+  }
+
+  &__score-box {
+    display: flex; 
+    gap: f.rem(10); 
+    background: rgba(255,255,255,0.1);
+    padding: f.rem(10) f.rem(20); 
+    border-radius: f.rem(4);
+  }
+
+  &__winner-title {
+    font-size: f.rem(60); 
+    margin: f.rem(10) 0;
+    &.text--orange { 
+      color: #FF8A00; 
+    }
+    &.text--blue { 
+      color: #00A3FF; 
+    }
+  }
+
+  &__winner-icon img {
+    width: f.rem(200); 
+    margin: f.rem(20) 0;
+    filter: drop-shadow(0 0 10px rgba(0,0,0,0.5));
+  }
+}
+
+
+.theme-code-vibes { --theme-color: #4DD5BC; }
+.theme-gaming { --theme-color: #FF0055; }
+.theme-foods { --theme-color: #FFCC00; }

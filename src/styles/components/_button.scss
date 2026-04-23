@@ -34,14 +34,14 @@
   }
 
   &:disabled {
-    background-color: #dcdcdc; // Grauer Hintergrund
-    color: #a0a0a0;            // Grauer Text
-    cursor: not-allowed;       // Verbotsschild-Cursor
-    transform: none;           // Keine Vergrößerung beim Hover
-    pointer-events: none;      // Button reagiert nicht auf Klicks/Hover
+    background-color: #dcdcdc; 
+    color: #a0a0a0;
+    cursor: not-allowed;
+    transform: none;
+    pointer-events: none;
     
     .btn__icon img {
-      filter: grayscale(1);    // Icon wird auch grau
+      filter: grayscale(1);
       opacity: 0.5;
     }
   }
@@ -70,5 +70,73 @@
       font-weight: 900; 
       text-shadow: 0.5px 0 0 currentColor, -0.5px 0 0 currentColor;
     }
+  }
+}
+
+.btn {
+  // 1. Gemeinsame Styles für beide Buttons
+  &--exit, &--restart {
+    background-color: rgba(134, 233, 214, 0.2);
+    border: 1px solid #4DD5BC;
+    color: white;
+    padding: f.rem(12) f.rem(24);
+    display: flex; // Standard für beide
+    align-items: center;
+    justify-content: center;
+    gap: f.rem(12);
+    font-family: inherit;
+    font-weight: 700;
+    font-size: f.rem(18);
+    cursor: pointer;
+    transition: all 0.2s;
+    border-radius: f.rem(4);
+
+    img { 
+      width: f.rem(20);
+    }
+
+    &:hover {
+      background-color: rgba(255, 255, 255, 0.15);
+      border-color: white;
+    }
+
+    .theme-foods & {
+      border-color: #F3832D;
+      background-color: #FFF9F2;
+      color: #333;
+      img { filter: none; }
+    }
+  }
+
+  // 2. Spezifische Änderung NUR für Restart (Überschreibt Flex)
+  &--restart {
+    display: block;           // Hier wird Flex entfernt
+    margin: f.rem(20) auto 0; // Zentriert den Button
+    width: fit-content;       // Sorgt dafür, dass margin: auto greift
+  }
+}
+
+.btn-modal {
+  padding: f.rem(14) f.rem(28);
+  font-family: v.$font-Almarai;
+  font-weight: 700;
+  font-size: f.rem(18);
+  border-radius: f.rem(4);
+  cursor: pointer;
+  border: none;
+  min-width: f.rem(180);
+  transition: opacity 0.2s;
+
+  &:hover { opacity: 0.9; }
+
+  &--primary {
+    background-color: #64ccb4;
+    color: white;
+  }
+
+  &--secondary {
+    background-color: #effcf9;
+    color: #64ccb4;
+    border: 2px solid #64ccb4;
   }
 }
