@@ -20,7 +20,7 @@
   &.is-matched &__inner {
     outline: 4px solid var(--match-color);
     border-radius: f.rem(8);
-    pointer-events: none; // Karte nicht mehr anklickbar machen
+    pointer-events: none;
   }
 
   &__inner {

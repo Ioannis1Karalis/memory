@@ -58,11 +58,11 @@ function createCard(val: number, theme: string): HTMLElement {
   const card = clone.querySelector('.card') as HTMLElement;
   const folder = themeFolderMap[theme];
 
-  card.setAttribute('data-val', val.toString()); // Wichtig für den Vergleich!
+  card.setAttribute('data-val', val.toString()); 
   (card.querySelector('.img-pattern') as HTMLImageElement).src = `/assets/imgs/${folder}/cards/${theme}-front.png`;
   (card.querySelector('.img-content') as HTMLImageElement).src = `/assets/imgs/${folder}/cards/${theme}-${val}.png`;
 
-  card.onclick = () => onCardClick(card); // Nutzt jetzt die neue Logik
+  card.onclick = () => onCardClick(card); 
   return card;
 }
 
@@ -119,7 +119,6 @@ btnConfirmExit?.addEventListener('click', () => {
 
 updateSettings();
 
-// 1. Aktualisiert die Score-Anzeige und das Diamant-Icon
 function updateUI() {
   const blueScore = document.getElementById('score-blue');
   const orangeScore = document.getElementById('score-orange');
@@ -130,7 +129,6 @@ function updateUI() {
   diamond!.className = `diamond-icon diamond-icon--${currentPlayer}`;
 }
 
-// 2. Logik wenn Karten NICHT gleich sind
 function handleMismatch() {
   isLocked = true;
   setTimeout(() => {
@@ -142,16 +140,13 @@ function handleMismatch() {
   }, 1000);
 }
 
-// 3. Logik wenn Karten GLEICH sind
 function handleMatch() {
   flippedCards.forEach(c => c.classList.add('is-matched'));
   scores[currentPlayer]++;
   flippedCards = [];
   updateUI();
-  // Check win condition here if needed
 }
 
-// 4. Vergleicht die beiden umgedrehten Karten
 function checkMatch() {
   const [c1, c2] = flippedCards;
   const val1 = c1.getAttribute('data-val');
@@ -160,7 +155,6 @@ function checkMatch() {
   val1 === val2 ? handleMatch() : handleMismatch();
 }
 
-// 5. Die Klick-Funktion (angepasst für createCard)
 function onCardClick(card: HTMLElement) {
   if (isLocked || flippedCards.includes(card) || card.classList.contains('is-matched')) return;
 
