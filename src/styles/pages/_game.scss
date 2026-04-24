@@ -54,21 +54,12 @@
   }
 
   .current-player {
+    font-family: v.$font-RedRose;
     display: flex;
     align-items: center;
     gap: f.rem(12);
     font-size: f.rem(22);
     font-weight: 400;
-  }
-
-  .diamond-icon {
-    width: f.rem(14);
-    height: f.rem(14);
-    transform: rotate(45deg);
-    flex-shrink: 0;
-    
-    &--blue { background-color: #2BB1FF; }
-    &--orange { background-color: #F58E39; }
   }
 }
 

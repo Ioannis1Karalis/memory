@@ -1,30 +1,42 @@
 import './styles/main.scss';
 
+// 1. Screens & Board
 const homeScreen = document.getElementById('home-screen');
 const settingsScreen = document.getElementById('settings-screen');
 const gameScreen = document.getElementById('game-screen');
 const gameBoard = document.getElementById('game-board');
 
+// 2. Buttons
 const startBtn = document.getElementById('start-game');
 const startActualGameBtn = document.getElementById('start-actual-game') as HTMLButtonElement;
-const exitGameBtn = document.getElementById('exit-game');
+const exitGameBtnHeader = document.getElementById('exit-game');
 
+// 3. Settings & Preview
 const previewImg = document.getElementById('theme-preview') as HTMLImageElement;
 const [sumTheme, sumPlayer, sumSize] = ['sum-theme', 'sum-player', 'sum-size'].map(id => document.getElementById(id));
 
+// 4. Modals
 const exitModal = document.getElementById('exit-modal');
-const exitGameBtnHeader = document.getElementById('exit-game');
 const btnBackToGame = document.getElementById('btn-back-to-game');
 const btnConfirmExit = document.getElementById('btn-confirm-exit');
 
+// 5. Game UI Elemente
+const activePlayerImg = document.getElementById('active-player-img') as HTMLImageElement; // Neu!
+const endScreen = document.getElementById('end-screen');
+
+// 6. Game State
 let flippedCards: HTMLElement[] = [];
 let scores = { blue: 0, orange: 0 };
 let currentPlayer: 'blue' | 'orange' = 'blue';
 let isLocked = false;
-
 let matchedPairs = 0;
 let currentSize = 0;
-const endScreen = document.getElementById('end-screen');
+
+// 7. Assets / Mappings
+const playerIcons = {
+  blue: '/assets/icons/blue-player.png',
+  orange: '/assets/icons/orange-player.png'
+};
 
 const pawnImages = {
   blue: '/assets/icons/pawn-winner-blue.png',
@@ -75,14 +87,16 @@ function createCard(val: number, theme: string): HTMLElement {
   return card;
 }
 
-function initGame(theme: string, size: number) {
+function initGame(theme: string, size: number, startPlayer: 'blue' | 'orange') {
   scores = { blue: 0, orange: 0 };
-  currentPlayer = 'blue';
+  currentPlayer = startPlayer; 
   flippedCards = [];
-  matchedPairs = 0;   // WICHTIG: Zurücksetzen!
-  currentSize = size; // WICHTIG: Wert speichern!
+  matchedPairs = 0;
+  currentSize = size;
   isLocked = false;
+  
   updateUI();
+  
   if (!gameBoard) return;
   gameBoard.innerHTML = '';
   gameBoard.style.gridTemplateColumns = `repeat(${size === 16 ? 4 : 6}, 1fr)`;
@@ -102,14 +116,15 @@ startBtn?.addEventListener('click', () => {
 startActualGameBtn?.addEventListener('click', () => {
   const selectedTheme = (document.querySelector('input[name="theme"]:checked') as HTMLInputElement).value;
   const selectedSize = parseInt((document.querySelector('input[name="size"]:checked') as HTMLInputElement).value);
+  const selectedPlayer = (document.querySelector('input[name="player"]:checked') as HTMLInputElement).value as 'blue' | 'orange';
 
   settingsScreen?.classList.add('hidden');
   gameScreen?.classList.remove('hidden');
 
   if (gameScreen) gameScreen.className = `game-page theme-${selectedTheme}`;
-  initGame(selectedTheme, selectedSize);
+  
+  initGame(selectedTheme, selectedSize, selectedPlayer);
 });
-
 
 
 exitGameBtnHeader?.addEventListener('click', () => {
@@ -133,11 +148,14 @@ updateSettings();
 function updateUI() {
   const blueScore = document.getElementById('score-blue');
   const orangeScore = document.getElementById('score-orange');
-  const diamond = document.getElementById('active-player-diamond');
+  const currentPlayerImg = document.getElementById('active-player-img') as HTMLImageElement;
   
   if (blueScore) blueScore.textContent = scores.blue.toString();
   if (orangeScore) orangeScore.textContent = scores.orange.toString();
-  diamond!.className = `diamond-icon diamond-icon--${currentPlayer}`;
+  
+  if (currentPlayerImg) {
+    currentPlayerImg.src = playerIcons[currentPlayer];
+  }
 }
 
 function handleMismatch() {
@@ -157,8 +175,8 @@ function handleMatch() {
   matchedPairs++;
   flippedCards = [];
   updateUI();
-  if (matchedPairs === currentSize / 2) handleGameOver();
-  //if (matchedPairs >= 1) handleGameOver();
+  //if (matchedPairs === currentSize / 2) handleGameOver();
+  if (matchedPairs >= 1) handleGameOver();
 }
 
 function checkMatch() {
@@ -182,12 +200,11 @@ function showWinner() {
   const winnerName = document.getElementById('winner-name')!;
   const winnerPawn = document.getElementById('winner-pawn') as HTMLImageElement;
   const isBlueWin = scores.blue > scores.orange;
-  const winnerColor = isBlueWin ? '#00A3FF' : '#FF8A00'; // Farbe für den Schatten
+  const winnerColor = isBlueWin ? '#00A3FF' : '#FF8A00'; 
 
   winnerName.textContent = isBlueWin ? 'BLUE PLAYER' : 'ORANGE PLAYER';
   winnerName.className = `end-screen__winner-title text--${isBlueWin ? 'blue' : 'orange'}`;
 
-  // FIX: Bildquelle tauschen und Schattenfarbe anpassen
   winnerPawn.src = isBlueWin ? pawnImages.blue : pawnImages.orange;
   winnerPawn.alt = `${isBlueWin ? 'Blauer' : 'Orangener'} Gewinner-Spielfigur`;
 
@@ -195,7 +212,6 @@ function showWinner() {
   document.getElementById('winner-view')?.classList.remove('hidden');
 }
 
-// 2. Initialisiert das Game Over
 function handleGameOver() {
   document.getElementById('final-blue')!.textContent = scores.blue.toString();
   document.getElementById('final-orange')!.textContent = scores.orange.toString();
@@ -203,7 +219,7 @@ function handleGameOver() {
   endScreen?.classList.remove('hidden');
   endScreen!.className = `end-screen theme-${(document.querySelector('input[name="theme"]:checked') as HTMLInputElement).value}`;
   
-  setTimeout(showWinner, 3000); // Zeigt nach 2 Sek. den Gewinner
+  setTimeout(showWinner, 3000); 
 }
 
 document.getElementById('btn-restart')?.addEventListener('click', () => {
