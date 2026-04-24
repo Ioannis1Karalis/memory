@@ -32,6 +32,10 @@
     pointer-events: none;
   }
 
+  &.theme-gaming { 
+    border-radius: f.rem(8);
+  }
+
   &__face {
     position: absolute;
     inset: 0;
@@ -39,7 +43,6 @@
     height: 100%;
     backface-visibility: hidden;
     -webkit-backface-visibility: hidden;
-    border-radius: f.rem(8);
     overflow: hidden;
 
     img {
