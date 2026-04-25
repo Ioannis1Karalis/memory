@@ -74,15 +74,12 @@
 }
 
 .btn {
-  // 1. Gemeinsame Styles für beide Buttons
   &--exit, &--restart {
     background-color: rgba(134, 233, 214, 0.2);
     border: 1px solid #4DD5BC;
     color: white;
     padding: f.rem(12) f.rem(24);
-    display: flex; // Standard für beide
-    align-items: center;
-    justify-content: center;
+    @include m.flex-center;
     gap: f.rem(12);
     font-family: inherit;
     font-weight: 700;
@@ -90,6 +87,8 @@
     cursor: pointer;
     transition: all 0.2s;
     border-radius: f.rem(4);
+    justify-self: end; 
+
 
     img { 
       width: f.rem(20);
@@ -108,11 +107,10 @@
     }
   }
 
-  // 2. Spezifische Änderung NUR für Restart (Überschreibt Flex)
   &--restart {
-    display: block;           // Hier wird Flex entfernt
-    margin: f.rem(20) auto 0; // Zentriert den Button
-    width: fit-content;       // Sorgt dafür, dass margin: auto greift
+    display: block; 
+    margin: f.rem(20) auto 0; 
+    width: fit-content;
   }
 }
 

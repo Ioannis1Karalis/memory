@@ -11,42 +11,89 @@
   z-index: 200; 
   text-align: center;
   font-family: v.$font-RedRose;
-  font-size: f.rem(40);
   font-weight: 400;
 
   &__title {
     color: var(--theme-color); 
-    text-shadow: 0 4px 0 rgba(0,0,0,0.5); 
-    margin-bottom: f.rem(40);
+    text-shadow: f.rem(3) 0 0 rgb(255, 255, 255); 
+    margin-bottom: f.rem(70);
+    font-size: f.rem(180); 
+    line-height: 1;
+  }
+
+  &__label {
+    font-family: v.$font-RedRose;
+    color: white;
+    font-size: f.rem(26);
+    margin-bottom: f.rem(24);
+    letter-spacing: f.rem(1);
+    font-weight: 400;
   }
 
   &__score-box {
-    display: flex; 
-    gap: f.rem(10); 
-    background: rgba(255,255,255,0.1);
-    padding: f.rem(10) f.rem(20); 
-    border-radius: f.rem(4);
+    @include m.flex-center;
+    gap: f.rem(40); 
+    background: #86E9D633;
+    padding: f.rem(15) f.rem(20); 
+    width: fit-content;
+    margin: 0 auto;
+
+    .player {
+      display: flex;
+      align-items: center;
+      gap: f.rem(4);
+      font-family: v.$font-Almarai;
+      font-weight: 700;
+      font-size: f.rem(24);
+
+      img {
+        width: f.rem(24);
+        height: auto;
+      }
+
+      &--blue { 
+        color: #2BB1FF; 
+      }
+      &--orange { 
+        color: #F58E39; 
+      }
+
+      span {
+        margin-left: f.rem(4);
+      }
+    }
   }
 
   &__winner-title {
     font-size: f.rem(60); 
     margin: f.rem(10) 0;
+    font-family: v.$font-Almarai;
+    font-weight: 800;
+
     &.text--orange { 
-      color: #FF8A00; 
+        color: #FF8A00; 
     }
+
     &.text--blue { 
-      color: #00A3FF; 
+        color: #00A3FF; 
     }
   }
 
   &__winner-icon img {
     width: f.rem(200); 
     margin: f.rem(20) 0;
-    filter: drop-shadow(0 0 10px rgba(0,0,0,0.5));
+    filter: drop-shadow(0 0 15px rgba(0, 0, 0, 0.5));
   }
 }
 
+.theme-code-vibes { 
+    --theme-color: #4DD5BC;
+}
 
-.theme-code-vibes { --theme-color: #4DD5BC; }
-.theme-gaming { --theme-color: #FF0055; }
-.theme-foods { --theme-color: #FFCC00; }
+.theme-gaming { 
+    --theme-color: #FF0055; 
+}
+
+.theme-foods { 
+    --theme-color: #FFCC00; 
+}

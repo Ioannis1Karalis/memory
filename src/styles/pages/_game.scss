@@ -25,8 +25,8 @@
   }
 
   &__header {
-    display: flex;
-    justify-content: space-between;
+    display: grid; 
+    grid-template-columns: 1fr auto 1fr;
     align-items: center;
     width: 100%;
     max-width: f.rem(1100);
@@ -34,9 +34,9 @@
   }
 
   .score-container {
-    background-color: rgba(255, 255, 255, 0.08);
+    justify-self: start;
+    background: #86E9D633;
     padding: f.rem(12) f.rem(24);
-    border-radius: f.rem(4);
     display: flex;
     gap: f.rem(25);
     font-family: v.$font-Almarai;
@@ -48,12 +48,18 @@
       align-items: center;
       gap: f.rem(10);
       
-      &--blue { color: #2BB1FF; }
-      &--orange { color: #F58E39; }
+      &--blue { 
+        color: #2BB1FF; 
+      }
+
+      &--orange { 
+        color: #F58E39; 
+      }
     }
   }
 
   .current-player {
+    justify-self: center;
     font-family: v.$font-RedRose;
     display: flex;
     align-items: center;
@@ -65,7 +71,7 @@
 
 .game-board {
   display: grid; 
-  gap: f.rem(5);
+  gap: f.rem(16);
   width: 100%;
   max-width: f.rem(600);
   margin: 0 auto;

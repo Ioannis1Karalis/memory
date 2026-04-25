@@ -131,14 +131,22 @@
     </section>
 
     <section id="end-screen" class="end-screen hidden">
-  <div id="game-over-view" class="end-screen__content">
-    <h1 class="end-screen__title">Game over</h1>
-    <p class="end-screen__label">Final score</p>
-    <div class="end-screen__score-box">
-      <div class="player player--blue"><div class="diamond-icon--blue"></div> Blue <span id="final-blue">0</span></div>
-      <div class="player player--orange"><div class="diamond-icon--orange"></div> Orange <span id="final-orange">0</span></div>
+ <div id="game-over-view" class="end-screen__content">
+  <h1 class="end-screen__title">Game over</h1>
+  <p class="end-screen__label">Final score</p>
+  
+  <div class="end-screen__score-box">
+    <div class="player player--blue">
+      <img src="/assets/icons/blue-player.png" alt="Blue Icon" class="score-icon">
+      Blue <span id="final-blue">0</span>
+    </div>
+    
+    <div class="player player--orange">
+      <img src="/assets/icons/orange-player.png" alt="Orange Icon" class="score-icon">
+      Orange <span id="final-orange">0</span>
     </div>
   </div>
+</div>
 
   <div id="winner-view" class="end-screen__content hidden">
     <img src="/assets/icons/confetti.png" alt="Confetti" class="end-screen__confetti">

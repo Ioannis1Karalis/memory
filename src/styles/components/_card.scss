@@ -19,7 +19,6 @@
 
   &.is-matched &__inner {
     outline: 4px solid var(--match-color);
-    border-radius: f.rem(8);
     pointer-events: none;
   }
 
@@ -53,7 +52,6 @@
 
     &--back {
       transform: rotateY(180deg);
-      
     }
   }
 }

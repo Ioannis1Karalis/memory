@@ -175,9 +175,13 @@ function handleMatch() {
   matchedPairs++;
   flippedCards = [];
   updateUI();
-  //if (matchedPairs === currentSize / 2) handleGameOver();
-  if (matchedPairs >= 1) handleGameOver();
+
+//   if (matchedPairs === currentSize / 2) {
+//    setTimeout(handleGameOver, 600);
+//   }
+   if (matchedPairs >= 1) handleGameOver();
 }
+
 
 function checkMatch() {
   const [c1, c2] = flippedCards;
@@ -213,11 +217,15 @@ function showWinner() {
 }
 
 function handleGameOver() {
+  document.getElementById('game-over-view')?.classList.remove('hidden');
+  document.getElementById('winner-view')?.classList.add('hidden');
+
   document.getElementById('final-blue')!.textContent = scores.blue.toString();
   document.getElementById('final-orange')!.textContent = scores.orange.toString();
   
+  const selectedTheme = (document.querySelector('input[name="theme"]:checked') as HTMLInputElement).value;
   endScreen?.classList.remove('hidden');
-  endScreen!.className = `end-screen theme-${(document.querySelector('input[name="theme"]:checked') as HTMLInputElement).value}`;
+  endScreen!.className = `end-screen theme-${selectedTheme}`;
   
   setTimeout(showWinner, 3000); 
 }
