@@ -2,7 +2,6 @@
 @use '../abstracts/mixins' as m;
 
 .card {
-  // --- BASE LAYOUT ---
   background: none; 
   border: none; 
   padding: 0;
@@ -31,32 +30,16 @@
     pointer-events: none;
   }
 
-  // --- THEME-SPECIFIC CARD STYLES ---
-
   .theme-gaming & {
-    
-
-    &__face {
-      // LÜCKE: Pinker Verlauf, Box-Shadow für 3D-Look, Border-Radius
-    }
-  }
-
-  .theme-foods & {
-    &__face {
-      // LÜCKE: Foods Farben, vielleicht weichere Ecken
-    }
-  }
-
-  .theme-code-vibes & {
-    &__face {
-      background-color: #4DD5BC;
-      border-radius: f.rem(4);
+    &__face, &__inner {
+      border-radius: f.rem(20);
     }
   }
 
   // --- FACE STRUCTURE ---
   &__face {
-    position: absolute; inset: 0;
+    position: absolute; 
+    inset: 0;
     width: 100%; 
     height: 100%;
     backface-visibility: hidden;

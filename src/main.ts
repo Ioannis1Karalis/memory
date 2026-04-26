@@ -181,10 +181,10 @@ function handleMatch() {
   flippedCards = [];
   updateUI();
 
-//   if (matchedPairs === currentSize / 2) {
-//    setTimeout(handleGameOver, 600);
-//   }
-   if (matchedPairs >= 1) handleGameOver();
+  if (matchedPairs === currentSize / 2) {
+   setTimeout(handleGameOver, 600);
+  }
+   //if (matchedPairs >= 1) handleGameOver();
 }
 
 
