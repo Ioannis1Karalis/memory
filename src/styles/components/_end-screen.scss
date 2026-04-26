@@ -3,85 +3,60 @@
 @use '../abstracts/mixins' as m;
 
 .end-screen {
-  position: fixed; 
-  inset: 0; 
+  // --- BASE LAYOUT ---
+  position: fixed; inset: 0; 
   background-color: #222;
   @include m.flex-center; 
   flex-direction: column; 
-  z-index: 200; 
-  text-align: center;
-  font-family: v.$font-RedRose;
-  font-weight: 400;
+  z-index: 200; text-align: center;
 
-  &__title {
-    color: var(--theme-color); 
-    text-shadow: f.rem(3) 0 0 rgb(255, 255, 255); 
-    margin-bottom: f.rem(70);
-    font-size: f.rem(180); 
-    line-height: 1;
+  // --- THEME BEREICH ---
+  &.theme-gaming {
+    // LÜCKE: Gaming spezifische Farben für Text/Hintergrund
+    .end-screen__title {
+       // LÜCKE: Spezieller Schatten für Gaming Game Over
+    }
   }
 
-  &__label {
+  &.theme-foods {
+    // LÜCKE: Foods spezifische End-Styles
+  }
+
+  // --- KOMPONENTEN ---
+  &__title {
+    color: var(--theme-color); 
+    margin-bottom: f.rem(70);
+    font-size: f.rem(180); 
     font-family: v.$font-RedRose;
-    color: white;
-    font-size: f.rem(26);
-    margin-bottom: f.rem(24);
-    letter-spacing: f.rem(1);
-    font-weight: 400;
+    line-height: 1;
   }
 
   &__score-box {
     @include m.flex-center;
     gap: f.rem(40); 
-    background: #86E9D633;
     padding: f.rem(15) f.rem(20); 
     width: fit-content;
     margin: 0 auto;
+    // LÜCKE: Standard Hintergrund für Score-Box (kann in Themes überschrieben werden)
 
     .player {
-      display: flex;
-      align-items: center;
-      gap: f.rem(4);
-      font-family: v.$font-Almarai;
-      font-weight: 700;
-      font-size: f.rem(24);
-
-      img {
-        width: f.rem(24);
-        height: auto;
-      }
-
-      &--blue { 
-        color: #2BB1FF; 
-      }
-      &--orange { 
-        color: #F58E39; 
-      }
-
-      span {
-        margin-left: f.rem(4);
-      }
+      display: flex; align-items: center; gap: f.rem(4);
+      font-family: v.$font-Almarai; font-weight: 700; font-size: f.rem(24);
+      img { width: f.rem(24); height: auto; }
+      &--blue { color: #2BB1FF; }
+      &--orange { color: #F58E39; }
     }
   }
 
   &__winner-title {
-    font-size: f.rem(60); 
-    margin: f.rem(10) 0;
-    font-family: v.$font-Almarai;
-    font-weight: 800;
-
-    &.text--orange { 
-        color: #FF8A00; 
-    }
-
-    &.text--blue { 
-        color: #00A3FF; 
-    }
+    font-size: f.rem(60); margin: f.rem(10) 0;
+    font-family: v.$font-Almarai; font-weight: 800;
+    &.text--orange { color: #FF8A00; }
+    &.text--blue { color: #00A3FF; }
   }
 
   &__winner-icon img {
-    width: f.rem(200); 
-    margin: f.rem(20) 0;
+    width: f.rem(200); margin: f.rem(20) 0;
     filter: drop-shadow(0 0 15px rgba(0, 0, 0, 0.5));
   }
 }

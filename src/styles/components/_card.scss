@@ -1,20 +1,29 @@
 @use '../abstracts/functions' as f;
 @use '../abstracts/mixins' as m;
 
-
 .card {
-  background: none;
-  border: none;
+  // --- BASE LAYOUT ---
+  background: none; 
+  border: none; 
   padding: 0;
-  display: block;
+  display: block; 
   width: 100%; 
-  aspect-ratio: 1 / 1; 
-  perspective: 1000px;
-  cursor: pointer;
+  aspect-ratio: 1 / 1;
+  perspective: 1000px; 
+  cursor: pointer; 
   position: relative;
 
-  &.is-flipped &__inner {
-    transform: rotateY(180deg);
+  &__inner {
+    position: relative; 
+    width: 100%; 
+    height: 100%;
+    transition: all 300ms ease-in-out;
+    transform-style: preserve-3d;
+    pointer-events: none;
+  }
+
+  &.is-flipped &__inner { 
+    transform: rotateY(180deg); 
   }
 
   &.is-matched &__inner {
@@ -22,36 +31,46 @@
     pointer-events: none;
   }
 
-  &__inner {
-    position: relative;
-    width: 100%;
-    height: 100%;
-    transition: all 300ms ease-in-out;
-    transform-style: preserve-3d;
-    pointer-events: none;
+  // --- THEME-SPECIFIC CARD STYLES ---
+
+  .theme-gaming & {
+    
+
+    &__face {
+      // LÜCKE: Pinker Verlauf, Box-Shadow für 3D-Look, Border-Radius
+    }
   }
 
-  &.theme-gaming { 
-    border-radius: f.rem(8);
+  .theme-foods & {
+    &__face {
+      // LÜCKE: Foods Farben, vielleicht weichere Ecken
+    }
   }
 
+  .theme-code-vibes & {
+    &__face {
+      background-color: #4DD5BC;
+      border-radius: f.rem(4);
+    }
+  }
+
+  // --- FACE STRUCTURE ---
   &__face {
-    position: absolute;
-    inset: 0;
-    width: 100%;
+    position: absolute; inset: 0;
+    width: 100%; 
     height: 100%;
     backface-visibility: hidden;
     -webkit-backface-visibility: hidden;
     overflow: hidden;
 
-    img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
+    img { 
+      width: 100%; 
+      height: 100%; 
+      object-fit: cover; 
     }
 
-    &--back {
-      transform: rotateY(180deg);
+    &--back { 
+      transform: rotateY(180deg); 
     }
   }
 }

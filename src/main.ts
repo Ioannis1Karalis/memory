@@ -118,6 +118,11 @@ startActualGameBtn?.addEventListener('click', () => {
   const selectedSize = parseInt((document.querySelector('input[name="size"]:checked') as HTMLInputElement).value);
   const selectedPlayer = (document.querySelector('input[name="player"]:checked') as HTMLInputElement).value as 'blue' | 'orange';
 
+  const appContainer = document.getElementById('app');
+  if (appContainer) {
+    appContainer.className = `theme-${selectedTheme}`;
+  }
+
   settingsScreen?.classList.add('hidden');
   gameScreen?.classList.remove('hidden');
 
