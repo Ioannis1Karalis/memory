@@ -90,22 +90,39 @@
     border-radius: f.rem(4);
     justify-self: end; 
 
-    img { width: f.rem(20); }
+    img { 
+      width: f.rem(20); 
+    }
 
     &:hover {
       background-color: rgba(255, 255, 255, 0.15);
       border-color: white;
     }
 
-    // --- Themes für Exit/Restart ---
-    .theme-gaming & {
-      font-family: v.$font-Orbitron;
-      font-size: f.rem(20);
-      background-color: #ED1B7614;
-      border: f.rem(2) solid #E71C4F;
-      border-radius: f.rem(10);
-      letter-spacing: f.rem(1);
+// --- Themes für Exit/Restart ---
+.theme-gaming & {
+  font-family: v.$font-Orbitron;
+  font-size: f.rem(20);
+  background-color: #ED1B7614;
+  border: f.rem(2) solid #E71C4F;
+  border-radius: f.rem(10);
+  letter-spacing: f.rem(1);
+
+  // Speziell für den Restart-Button im Gaming Theme
+  &.btn--restart {
+    font-size: 0; // Versteckt den Original-Text ("Restart")
+    
+    img { 
+      display: none; // Entfernt das Icon (wie du vorhin gefragt hast)
     }
+
+    &::after {
+      content: "Home"; // Dein neuer Text
+      font-size: f.rem(20); // Gibt dem neuen Text wieder eine Größe
+      display: block;
+    }
+  }
+}
 
     .theme-foods & {
       font-family: v.$font-Delius;

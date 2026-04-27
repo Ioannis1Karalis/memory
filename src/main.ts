@@ -153,13 +153,13 @@ updateSettings();
 function updateUI() {
   const blueScore = document.getElementById('score-blue');
   const orangeScore = document.getElementById('score-orange');
-  const currentPlayerImg = document.getElementById('active-player-img') as HTMLImageElement;
   
   if (blueScore) blueScore.textContent = scores.blue.toString();
   if (orangeScore) orangeScore.textContent = scores.orange.toString();
   
-  if (currentPlayerImg) {
-    currentPlayerImg.src = playerIcons[currentPlayer];
+  if (gameScreen) {
+    gameScreen.classList.remove('is-blue-active', 'is-orange-active');
+    gameScreen.classList.add(`is-${currentPlayer}-active`);
   }
 }
 
@@ -181,10 +181,10 @@ function handleMatch() {
   flippedCards = [];
   updateUI();
 
-  if (matchedPairs === currentSize / 2) {
-   setTimeout(handleGameOver, 600);
-  }
-   //if (matchedPairs >= 1) handleGameOver();
+//   if (matchedPairs === currentSize / 2) {
+//    setTimeout(handleGameOver, 600);
+//   }
+  if (matchedPairs >= 1) handleGameOver();
 }
 
 
@@ -211,7 +211,7 @@ function showWinner() {
   const isBlueWin = scores.blue > scores.orange;
   const winnerColor = isBlueWin ? '#00A3FF' : '#FF8A00'; 
 
-  winnerName.textContent = isBlueWin ? 'BLUE PLAYER' : 'ORANGE PLAYER';
+  winnerName.textContent = isBlueWin ? 'Blue Player' : 'Orange Player';
   winnerName.className = `end-screen__winner-title text--${isBlueWin ? 'blue' : 'orange'}`;
 
   winnerPawn.src = isBlueWin ? pawnImages.blue : pawnImages.orange;
@@ -232,7 +232,7 @@ function handleGameOver() {
   endScreen?.classList.remove('hidden');
   endScreen!.className = `end-screen theme-${selectedTheme}`;
   
-  setTimeout(showWinner, 3000); 
+  //setTimeout(showWinner, 3000); 
 }
 
 document.getElementById('btn-restart')?.addEventListener('click', () => {
