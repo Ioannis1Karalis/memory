@@ -232,7 +232,7 @@ function handleGameOver() {
   endScreen?.classList.remove('hidden');
   endScreen!.className = `end-screen theme-${selectedTheme}`;
   
-  //setTimeout(showWinner, 3000); 
+  setTimeout(showWinner, 3000); 
 }
 
 document.getElementById('btn-restart')?.addEventListener('click', () => {
