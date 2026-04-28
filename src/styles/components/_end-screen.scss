@@ -46,7 +46,7 @@
       font-family: v.$font-Orbitron;
       font-size: f.rem(64);
       text-shadow: f.rem(4) f.rem(4) f.rem(4) rgba(0, 0, 0, 0.25);
-      
+
       &.text--orange { 
         color: #EA6900; 
       }
@@ -63,8 +63,7 @@
     &__winner-icon img {
       content: url('/assets/icons/pockal.png'); 
     }
- }
-    
+ }  
     .player {
       font-size: 0;
       gap: f.rem(4);
@@ -90,26 +89,56 @@
   }
 
   &.theme-foods {
-    .end-screen__title {
-      font-family: v.$font-Delius;
+    .end-screen {
+    
+    &__title {
+      font-family: v.$font-Klee;
+      text-transform: uppercase;
+
     }
 
+    &__label  {
+      font-family: v.$font-Klee;
+      font-size: f.rem(42);
+    }
+
+    &__score-box {
+        background-color: #FFFFFF;
+        margin-top: 14px;
+        flex-direction: row-reverse;
+        gap: f.rem(30);
+      }
+}
+     
     .player {
       font-size: 0;
+      gap: f.rem(6);
 
       span { 
         font-size: f.rem(32); 
         font-family: v.$font-Delius;
       }
 
+      &--blue {
+        color: #097FC5;
+      } 
+
       &--blue img { 
-        content: url('/assets/icons/food-blue.png'); 
+        width: 100%;
+        content: url('/assets/icons/chess-pawn-blue.png'); 
       }
+
+      &--orange{
+            color: #EA6900;
+      }
+
       &--orange img { 
-        content: url('/assets/icons/food-orange.png'); 
+        width: 100%;
+        content: url('/assets/icons/chess-pawn-orange.png'); 
       }
     }
-  }
+
+}
 
   &__title {
     color: var(--theme-color); 
