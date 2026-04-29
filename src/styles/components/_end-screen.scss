@@ -5,21 +5,29 @@
 .end-screen {
   position: fixed; 
   inset: 0; 
-  background-color: var(--theme-bg-color);
-  @include m.flex-center; 
+  background-color: var(--theme-bg-color); 
   flex-direction: column; 
   z-index: 200; 
   text-align: center;
 
   &.theme-code-vibes {
-    .end-screen__winner-title {
-      text-transform: uppercase;
+    .end-screen{
+
+      &__winner-title {
+        text-transform: uppercase;
+      }
+
+      &__winner-text {
+        font-family: v.$font-RedRose;
+        font-size: f.rem(40);
+      }
     }
   }
 
   // --- THEME BEREICH ---
   &.theme-gaming {
-    
+    @include m.flex-center;
+
     .end-screen{
       &__score-box {
         background-color: #FFFFFF;
@@ -50,6 +58,7 @@
       &.text--orange { 
         color: #EA6900; 
       }
+      
       &.text--blue { 
         color: #2298DB; 
       }
@@ -81,6 +90,7 @@
         width: 100%;
         content: url('/assets/icons/chess-pawn-blue.png'); 
       }
+
       &--orange img { 
         width: 100%;
         content: url('/assets/icons/chess-pawn-orange.png'); 
@@ -90,11 +100,17 @@
 
   &.theme-foods {
     .end-screen {
-    
+        
+    &__content {
+      height: 100vh;
+      width: 100%;
+      @include m.flex-center;
+      flex-direction: column;
+    }
+
     &__title {
       font-family: v.$font-Klee;
       text-transform: uppercase;
-
     }
 
     &__label  {
@@ -103,13 +119,43 @@
     }
 
     &__score-box {
-        background-color: #FFFFFF;
-        margin-top: 14px;
-        flex-direction: row-reverse;
-        gap: f.rem(30);
+      background-color: #FFFFFF;
+      margin-top: 14px;
+      flex-direction: row-reverse;
+      gap: f.rem(30);
+    }
+
+    &__confetti {
+        display: none;
+    }
+
+    &__winner-text {
+      font-family: v.$font-Klee;
+      font-weight: 400;
+      font-size: f.rem(40);
+      color: #A45212;
+    }
+
+    &__winner-title {
+      font-family: v.$font-Klee;
+      font-weight: 600;
+      font-size: f.rem(80);
+      margin-bottom: f.rem(20);
+      margin-top: 0;
+
+      &.text--orange, &.text--blue { 
+        color: #A45212; 
       }
-}
-     
+    }
+
+    &__winner-icon img {
+      background-color: #F7E6D5;
+      padding: 20px;
+      width: f.rem(250);
+      box-shadow: f.rem(3) f.rem(3) f.rem(6) rgba(0, 0, 0, 0.25);
+    }
+
+  }
     .player {
       font-size: 0;
       gap: f.rem(6);
@@ -129,7 +175,7 @@
       }
 
       &--orange{
-            color: #EA6900;
+        color: #EA6900;
       }
 
       &--orange img { 
@@ -138,6 +184,14 @@
       }
     }
 
+     #game-over-view {
+    background-color: #F3832D;
+  }
+
+  // Winner Screen wird weiß
+  #winner-view {
+    background-color: #ffffff;
+  }
 }
 
   &__title {

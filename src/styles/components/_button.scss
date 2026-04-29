@@ -2,13 +2,12 @@
 @use '../abstracts/functions' as f;
 @use '../abstracts/mixins' as m;
 
-// --- 1. BASE-BUTTONS (Home- & Settings-Screen) ---
 .btn {
   border: none;
   cursor: pointer;
   @include m.flex-center;
   gap: f.rem(12);
-  transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  transition: transform 0.3s ease-in-out;
 
   &--primary {
     background-color: v.$color-primary;
@@ -38,24 +37,11 @@
     background-color: #dcdcdc; 
     color: #a0a0a0;
     cursor: not-allowed;
-    transform: none;
-    pointer-events: none;
 
     .btn__icon img { 
       filter: grayscale(1); 
       opacity: 0.5; 
     }
-  }
-
-  &__icon img { 
-    height: auto; transition: 
-    transform 0.4s ease; 
-  }
-
-  &__arrow { 
-    display: inline-block; 
-    transition: transform 0.3s ease, 
-    font-weight 0.3s ease; 
   }
 
   &:hover {
@@ -64,7 +50,6 @@
     .btn__icon img { 
       transform: rotate(-15deg); 
     }
-
     .btn__arrow { 
       transform: translateX(8px); 
       font-weight: 900; 
@@ -72,80 +57,102 @@
   }
 }
 
-// --- 2. EXIT & RESTART BUTTONS (Game-Header & End-Screen) ---
-.btn {
-  &--exit, &--restart {
-    // Standard-Look (Code Vibes)
-    background-color: rgba(134, 233, 214, 0.2);
-    border: 1px solid #4DD5BC;
-    color: white;
-    padding: f.rem(12) f.rem(24);
-    @include m.flex-center;
-    gap: f.rem(12);
-    font-family: v.$font-RedRose;
-    font-weight: 700;
-    font-size: f.rem(24);
-    cursor: pointer;
-    transition: all 0.2s;
-    border-radius: f.rem(4);
-    justify-self: end; 
+.btn--exit {
+  background-color: rgba(134, 233, 214, 0.2);
+  border: 1px solid #4DD5BC;
+  color: white;
+  padding: f.rem(12) f.rem(24);
+  @include m.flex-center;
+  gap: f.rem(12);
+  font-family: v.$font-RedRose;
+  font-weight: 700;
+  font-size: f.rem(24);
+  cursor: pointer;
+  transition: all 0.2s;
+  border-radius: f.rem(4);
+  justify-self: end; 
+
+  img { 
+    width: f.rem(20); 
+  }
+
+  &:hover {
+    background-color: rgba(255, 255, 255, 0.15);
+    border-color: white;
+  }
+
+  .theme-gaming & {
+    font-family: v.$font-Orbitron;
+    font-size: f.rem(20);
+    background-color: #ED1B7614;
+    border: f.rem(2) solid #E71C4F;
+    border-radius: f.rem(10);
+  }
+
+  .theme-foods & {
+    font-family: v.$font-Delius;
+    font-size: f.rem(16);
+    border-color: #F3832D;
+    background-color: #FFF9F2;
+    color: #F3832D;
+    border-radius: f.rem(10);
 
     img { 
-      width: f.rem(20); 
+      filter: invert(64%) sepia(93%) saturate(1453%) hue-rotate(345deg) brightness(101%) contrast(92%); 
     }
+  }
+}
 
-    &:hover {
-      background-color: rgba(255, 255, 255, 0.15);
-      border-color: white;
-    }
+.btn--restart {
+  display: block; 
+  margin: f.rem(20) auto 0; 
+  width: fit-content;
+  cursor: pointer;
+  padding: f.rem(12) f.rem(24);
+  transition: all 0.2s;
+  font-family: v.$font-RedRose;
+  font-size: f.rem(24);
+  background-color: rgba(134, 233, 214, 0.2);
+  border: 1px solid #4DD5BC;
+  color: white;
+  text-align: center;
 
-// --- Themes für Exit/Restart ---
-.theme-gaming & {
-  font-family: v.$font-Orbitron;
-  font-size: f.rem(20);
-  background-color: #ED1B7614;
-  border: f.rem(2) solid #E71C4F;
-  border-radius: f.rem(10);
-  letter-spacing: f.rem(1);
-
-  // Speziell für den Restart-Button im Gaming Theme
-  &.btn--restart {
-    font-size: 0; // Versteckt den Original-Text ("Restart")
+  .theme-gaming & {
+    font-family: v.$font-Orbitron;
+    background-color: #ED1B7614; 
+    border: f.rem(2) solid #E71C4F;
+    border-radius: f.rem(10);
+    font-size: 0; 
     
-    img { 
-      display: none; // Entfernt das Icon (wie du vorhin gefragt hast)
-    }
-
+    img { display: none; }
     &::after {
-      content: "Home"; // Dein neuer Text
-      font-size: f.rem(20); // Gibt dem neuen Text wieder eine Größe
+      content: "Home";
+      font-size: f.rem(20);
+      color: white;
+      display: block;
+    }
+  }
+
+  .theme-foods & {
+    font-family: v.$font-Delius;
+    background-color: #F3832D; 
+    border: f.rem(2) solid #F3832D;
+    border-radius: f.rem(10);
+    font-size: 0; 
+
+    img { 
+      display: none; 
+    }
+    
+    &::after {
+      content: "Home";
+      font-size: f.rem(16);
+      color: white;
       display: block;
     }
   }
 }
 
-    .theme-foods & {
-      font-family: v.$font-Delius;
-      font-size: f.rem(16);
-      border-color: #F3832D;
-      background-color: #FFF9F2;
-      color: #F3832D;
-
-      img { 
-        filter: invert(64%) sepia(93%) saturate(1453%) hue-rotate(345deg) brightness(101%) contrast(92%);
-        width: f.rem(22);
-      }
-    }
-  }
-
-  &--restart {
-    display: block; 
-    margin: f.rem(20) auto 0; 
-    width: fit-content;
-  }
-}
-
-// --- 3. MODAL BUTTONS (Exit-Modal) ---
 .btn-modal {
   font-family: v.$font-Almarai;
   font-weight: 700;
@@ -153,65 +160,54 @@
   cursor: pointer;
   border: none;
   transition: all 0.2s;
+  padding: f.rem(14) f.rem(28);
 
-  // Standard (Code Vibes) - Bleibt beim Originaltext aus dem HTML
   &--primary { 
-    padding: f.rem(14) f.rem(28);
-    background-color: #64CCB4; 
-    color: white; 
+    background-color: #64CCB4; color: white; 
   }
 
   &--secondary { 
-    padding: f.rem(10) f.rem(20);
     background-color: #effcf9; 
     color: #64CCB4; 
     border: 2px solid #64CCB4; 
+    padding: f.rem(10) f.rem(20);
   }
 
-  // --- THEME GAMING (Orbitron + Text-Ersatz) ---
   .theme-gaming & {
     font-family: v.$font-Orbitron;
     border-radius: f.rem(12);
-    letter-spacing: f.rem(1);
-    padding: f.rem(14) f.rem(10);
+    font-size: 0;
 
     &--primary {
       background-color: #FF2D78;
-      color: white;
-      font-size: 0;
 
-      &::after {
-        content: "No, back to game";
-        font-size: f.rem(16);
+      &::after { 
+        content: "No, back to game"; font-size: f.rem(16); 
       }
     }
-    
+
     &--secondary {
       background-color: #FCEEF5;
       color: #FF2D78;
       border: f.rem(2) solid #FF2D78;
-      font-size: 0; 
 
-      &::after {
-        content: "Yes, quit game";
-        font-size: f.rem(16);
+      &::after { 
+        content: "Yes, quit game"; font-size: f.rem(16); 
       }
     }
   }
 
-  // --- THEME FOODS (Red Rose + Text-Ersatz) ---
   .theme-foods & {
     font-family: v.$font-Klee;
     border-radius: f.rem(10);
+    font-size: 0;
 
     &--primary {
       background-color: #FFAB3E;
-      color: white;
-      font-size: 0;
 
-      &::after {
-        content: "No, back to game";
-        font-size: f.rem(18);
+      &::after { 
+        content: "No, back to game"; 
+        font-size: f.rem(18); 
       }
     }
 
@@ -219,13 +215,11 @@
       background-color: #FFF9F2;
       color: #F3832D;
       border: 2px solid #F3832D;
-      font-size: 0;
 
-      &::after {
-        content: "Exit game";
-        font-size: f.rem(18);
+      &::after { 
+        content: "Exit game"; 
+        font-size: f.rem(18); 
       }
     }
   }
 }
-
