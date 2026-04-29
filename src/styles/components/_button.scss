@@ -1,6 +1,6 @@
-@use '../abstracts/variables' as v;
-@use '../abstracts/functions' as f;
-@use '../abstracts/mixins' as m;
+@use "../abstracts/variables" as v;
+@use "../abstracts/functions" as f;
+@use "../abstracts/mixins" as m;
 
 .btn {
   border: none;
@@ -17,8 +17,8 @@
     font-weight: 700;
     font-size: f.rem(40);
 
-    .btn__icon img { 
-      width: f.rem(40); 
+    .btn__icon img {
+      width: f.rem(40);
     }
   }
 
@@ -28,38 +28,38 @@
     font-size: f.rem(20);
     padding: f.rem(16) f.rem(26);
 
-    .btn__icon img { 
-      width: f.rem(20); 
+    .btn__icon img {
+      width: f.rem(20);
     }
   }
 
   &:disabled {
-    background-color: #dcdcdc; 
+    background-color: #dcdcdc;
     color: #a0a0a0;
     cursor: not-allowed;
 
-    .btn__icon img { 
-      filter: grayscale(1); 
-      opacity: 0.5; 
+    .btn__icon img {
+      filter: grayscale(1);
+      opacity: 0.5;
     }
   }
 
   &:hover {
-    transform: scale(1.1); 
+    transform: scale(1.1);
 
-    .btn__icon img { 
-      transform: rotate(-15deg); 
+    .btn__icon img {
+      transform: rotate(-15deg);
     }
-    .btn__arrow { 
-      transform: translateX(8px); 
-      font-weight: 900; 
+    .btn__arrow {
+      transform: translateX(8px);
+      font-weight: 900;
     }
   }
 }
 
 .btn--exit {
   background-color: rgba(134, 233, 214, 0.2);
-  border: 1px solid #4DD5BC;
+  border: 1px solid #4dd5bc;
   color: white;
   padding: f.rem(12) f.rem(24);
   @include m.flex-center;
@@ -70,10 +70,10 @@
   cursor: pointer;
   transition: all 0.2s;
   border-radius: f.rem(4);
-  justify-self: end; 
+  justify-self: end;
 
-  img { 
-    width: f.rem(20); 
+  img {
+    width: f.rem(20);
   }
 
   &:hover {
@@ -84,28 +84,29 @@
   .theme-gaming & {
     font-family: v.$font-Orbitron;
     font-size: f.rem(20);
-    background-color: #ED1B7614;
-    border: f.rem(2) solid #E71C4F;
+    background-color: #ed1b7614;
+    border: f.rem(2) solid #e71c4f;
     border-radius: f.rem(10);
   }
 
   .theme-foods & {
     font-family: v.$font-Delius;
     font-size: f.rem(16);
-    border-color: #F3832D;
-    background-color: #FFF9F2;
-    color: #F3832D;
+    border-color: #f3832d;
+    background-color: #fff9f2;
+    color: #f3832d;
     border-radius: f.rem(10);
 
-    img { 
-      filter: invert(64%) sepia(93%) saturate(1453%) hue-rotate(345deg) brightness(101%) contrast(92%); 
+    img {
+      filter: invert(64%) sepia(93%) saturate(1453%) hue-rotate(345deg)
+        brightness(101%) contrast(92%);
     }
   }
 }
 
 .btn--restart {
-  display: block; 
-  margin: f.rem(20) auto 0; 
+  display: block;
+  margin: f.rem(20) auto 0;
   width: fit-content;
   cursor: pointer;
   padding: f.rem(12) f.rem(24);
@@ -113,18 +114,20 @@
   font-family: v.$font-RedRose;
   font-size: f.rem(24);
   background-color: rgba(134, 233, 214, 0.2);
-  border: 1px solid #4DD5BC;
+  border: 1px solid #4dd5bc;
   color: white;
   text-align: center;
 
   .theme-gaming & {
     font-family: v.$font-Orbitron;
-    background-color: #ED1B7614; 
-    border: f.rem(2) solid #E71C4F;
+    background-color: #ed1b7614;
+    border: f.rem(2) solid #e71c4f;
     border-radius: f.rem(10);
-    font-size: 0; 
-    
-    img { display: none; }
+    font-size: 0;
+
+    img {
+      display: none;
+    }
     &::after {
       content: "Home";
       font-size: f.rem(20);
@@ -135,15 +138,15 @@
 
   .theme-foods & {
     font-family: v.$font-Delius;
-    background-color: #F3832D; 
-    border: f.rem(2) solid #F3832D;
+    background-color: #f3832d;
+    border: f.rem(2) solid #f3832d;
     border-radius: f.rem(10);
-    font-size: 0; 
+    font-size: 0;
 
-    img { 
-      display: none; 
+    img {
+      display: none;
     }
-    
+
     &::after {
       content: "Home";
       font-size: f.rem(16);
@@ -162,14 +165,15 @@
   transition: all 0.2s;
   padding: f.rem(14) f.rem(28);
 
-  &--primary { 
-    background-color: #64CCB4; color: white; 
+  &--primary {
+    background-color: #64ccb4;
+    color: white;
   }
 
-  &--secondary { 
-    background-color: #effcf9; 
-    color: #64CCB4; 
-    border: 2px solid #64CCB4; 
+  &--secondary {
+    background-color: #effcf9;
+    color: #64ccb4;
+    border: 2px solid #64ccb4;
     padding: f.rem(10) f.rem(20);
   }
 
@@ -179,20 +183,22 @@
     font-size: 0;
 
     &--primary {
-      background-color: #FF2D78;
+      background-color: #ff2d78;
 
-      &::after { 
-        content: "No, back to game"; font-size: f.rem(16); 
+      &::after {
+        content: "No, back to game";
+        font-size: f.rem(16);
       }
     }
 
     &--secondary {
-      background-color: #FCEEF5;
-      color: #FF2D78;
-      border: f.rem(2) solid #FF2D78;
+      background-color: #fceef5;
+      color: #ff2d78;
+      border: f.rem(2) solid #ff2d78;
 
-      &::after { 
-        content: "Yes, quit game"; font-size: f.rem(16); 
+      &::after {
+        content: "Yes, quit game";
+        font-size: f.rem(16);
       }
     }
   }
@@ -203,22 +209,22 @@
     font-size: 0;
 
     &--primary {
-      background-color: #FFAB3E;
+      background-color: #ffab3e;
 
-      &::after { 
-        content: "No, back to game"; 
-        font-size: f.rem(18); 
+      &::after {
+        content: "No, back to game";
+        font-size: f.rem(18);
       }
     }
 
     &--secondary {
-      background-color: #FFF9F2;
-      color: #F3832D;
-      border: 2px solid #F3832D;
+      background-color: #fff9f2;
+      color: #f3832d;
+      border: 2px solid #f3832d;
 
-      &::after { 
-        content: "Exit game"; 
-        font-size: f.rem(18); 
+      &::after {
+        content: "Exit game";
+        font-size: f.rem(18);
       }
     }
   }

@@ -1,5 +1,5 @@
-@use '../abstracts/variables' as v;
-@use '../abstracts/functions' as f;
+@use "../abstracts/variables" as v;
+@use "../abstracts/functions" as f;
 
 body {
   color: v.$color-text;
@@ -9,7 +9,7 @@ body {
 .home-screen {
   &__subtitle {
     font-family: v.$font-Almarai;
-    font-size: f.rem(48); 
+    font-size: f.rem(48);
     font-weight: 400;
     margin-bottom: f.rem(10);
     line-height: 1.2;

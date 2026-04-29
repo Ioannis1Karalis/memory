@@ -149,3 +149,24 @@
     }
   }
 }
+
+.modal {
+  .theme-gaming & {
+    .modal__overlay {
+      background-color: rgba(26, 75, 82, 0.85);
+    }
+
+    .modal__content {
+      background-color: #f0f6f9;
+      color: white;
+      border-radius: f.rem(20);
+    }
+
+    .modal__title {
+      font-size: f.rem(28);
+      font-family: v.$font-Orbitron;
+      color: #294f60;
+      letter-spacing: f.rem(2);
+    }
+  }
+}

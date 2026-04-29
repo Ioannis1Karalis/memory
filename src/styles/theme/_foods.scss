@@ -162,3 +162,22 @@
     }
   }
 }
+
+.modal {
+  .theme-foods & {
+    .modal__overlay {
+      background-color: rgba(255, 249, 242, 0.7);
+    }
+
+    .modal__content {
+      background-color: #f6f6f6;
+      border-radius: f.rem(20);
+      box-shadow: 0 8px 30px rgba(243, 131, 45, 0.2);
+    }
+
+    .modal__title {
+      font-family: v.$font-Klee;
+      color: #a45212;
+    }
+  }
+}

@@ -54,3 +54,18 @@
     }
   }
 }
+
+.modal {
+  .theme-code-vibes & {
+    .modal__overlay {
+      background-color: rgba(0, 0, 0, 0.4);
+    }
+    .modal__content {
+      background-color: white;
+    }
+    .modal__title {
+      font-family: v.$font-RedRose;
+      color: #2d2d2d;
+    }
+  }
+}

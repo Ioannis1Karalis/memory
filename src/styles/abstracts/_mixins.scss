@@ -1,5 +1,5 @@
-@use '../abstracts/functions' as f;
-@use '../abstracts/variables' as v;
+@use "../abstracts/functions" as f;
+@use "../abstracts/variables" as v;
 
 @mixin flex-center {
   display: flex;
@@ -9,10 +9,14 @@
 
 @mixin respond-to($breakpoint) {
   @if $breakpoint == "tablet" {
-    @media (min-width: 768px) { @content; }
+    @media (min-width: 768px) {
+      @content;
+    }
   }
   @if $breakpoint == "desktop" {
-    @media (min-width: 1024px) { @content; }
+    @media (min-width: 1024px) {
+      @content;
+    }
   }
 }
 
@@ -33,21 +37,21 @@
 
   @if $active {
     width: f.rem(4) !important;
-    
+
     &::after {
       content: "" !important;
-      display: block !important; 
+      display: block !important;
       position: absolute;
       bottom: f.rem(-10);
       left: f.rem(-11);
-      transform: translateX(-50%) rotate(70deg); 
-      width: f.rem(16); 
+      transform: translateX(-50%) rotate(70deg);
+      width: f.rem(16);
       height: f.rem(16);
       background-color: v.$color-primary;
       z-index: 2;
     }
   } @else {
-    width: f.rem(10) !important; 
+    width: f.rem(10) !important;
     &::after {
       content: none !important;
       display: none !important;

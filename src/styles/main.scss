@@ -2,30 +2,19 @@
 @forward "abstracts/functions";
 @forward "abstracts/mixins";
 
-// abstracts
 @use "abstracts/variables";
 @use "abstracts/functions";
 @use "abstracts/mixins";
-
-// base
 @use "base/typography";
-
-// layout (Zuerst das Skelett)
 @use "layout/structure";
-
-// components (Dann die Bausteine)
 @use "components/button";
 @use "components/card";
-@use "components/end-screen"; // Die Component-Version
+@use "components/end-screen";
 @use "components/modal";
 @use "components/radio";
-
-// pages
 @use "pages/homescreen";
 @use "pages/settings";
 @use "pages/game";
-
-// theme (Ganz am Ende zum Überschreiben)
 @use "theme/code-vibes";
 @use "theme/gaming";
 @use "theme/foods";
@@ -50,16 +39,4 @@ body {
 
 .hidden {
   display: none !important;
-}
-
-.theme-code-vibes {
-  --match-color: #4dd5bc;
-}
-
-.theme-gaming {
-  --match-color: #ed1b76;
-}
-
-.theme-foods {
-  --match-color: #f3832d;
 }

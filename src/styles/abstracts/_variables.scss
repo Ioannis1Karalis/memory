@@ -1,25 +1,28 @@
-$color-bg: #1e1e1e; 
-$color-primary: #F0EA6E;
+$color-bg: #1e1e1e;
+$color-primary: #f0ea6e;
 $color-text: #ffffff;
 $color-text-dark: #1e1e1e;
 
-$font-RedRose: 'Red Rose', cursive;
-$font-Almarai: 'Almarai', sans-serif;
-$font-Orbitron: 'Orbitron', sans-serif;
-$font-Delius: 'Delius Unicase', cursive;
-$font-Klee: 'Klee One', sans-serif;
+$font-RedRose: "Red Rose", cursive;
+$font-Almarai: "Almarai", sans-serif;
+$font-Orbitron: "Orbitron", sans-serif;
+$font-Delius: "Delius Unicase", cursive;
+$font-Klee: "Klee One", sans-serif;
 
-.theme-code-vibes { 
-    --theme-color: #4DD5BC;
-    --theme-bg-color: #303131;
+.theme-code-vibes {
+  --match-color: #4dd5bc;
+  --theme-color: #4dd5bc;
+  --theme-bg-color: #303131;
 }
 
-.theme-gaming { 
-    --theme-color: #ED1B76; 
-    --theme-bg-color:#294F60;
+.theme-gaming {
+  --match-color: #f3832d;
+  --theme-color: #ed1b76;
+  --theme-bg-color: #294f60;
 }
 
-.theme-foods { 
-    --theme-color: ; 
-    --theme-bg-color: #F2832D;
+.theme-foods {
+  --match-color: #f3832d;
+  --theme-color: ;
+  --theme-bg-color: #f2832d;
 }

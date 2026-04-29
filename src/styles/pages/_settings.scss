@@ -1,13 +1,13 @@
-@use '../abstracts/variables' as v;
-@use '../abstracts/functions' as f;
-@use '../abstracts/mixins' as m;
+@use "../abstracts/variables" as v;
+@use "../abstracts/functions" as f;
+@use "../abstracts/mixins" as m;
 
 .settings-page {
   background-color: white;
-  min-height: 100vh;
+  height: 100vh;
   padding: f.rem(80) f.rem(120);
   @include m.flex-center;
-  flex-direction: column;  
+  flex-direction: column;
   color: v.$color-text-dark;
 
   &__container {
@@ -24,14 +24,14 @@
     padding-top: f.rem(120);
   }
 
-    &__title {
-      font-family: v.$font-RedRose;
-      font-size: f.rem(72);
-      margin-bottom: f.rem(80);
-      position: relative;
+  &__title {
+    font-family: v.$font-RedRose;
+    font-size: f.rem(72);
+    margin-bottom: f.rem(80);
+    position: relative;
 
     &::after {
-      content: '';
+      content: "";
       position: absolute;
       bottom: f.rem(-10);
       left: f.rem(-5);
@@ -41,14 +41,14 @@
     }
 
     &::before {
-      content: '';
+      content: "";
       position: absolute;
       bottom: f.rem(-30);
       left: f.rem(-24);
       width: f.rem(22);
       height: f.rem(22);
       background-color: v.$color-primary;
-      transform: translateY(-50%) rotate(45deg); 
+      transform: translateY(-50%) rotate(45deg);
     }
   }
 
@@ -58,7 +58,7 @@
     display: flex;
     justify-content: flex-end;
     min-height: f.rem(400);
-    
+
     img {
       max-width: f.rem(600);
     }
@@ -88,7 +88,7 @@
 
 .option-group {
   margin-bottom: f.rem(45);
-  
+
   &__label {
     display: flex;
     align-items: center;
@@ -98,13 +98,15 @@
     font-weight: 700;
     margin-bottom: f.rem(20);
 
-    img { width: f.rem(30); }
+    img {
+      width: f.rem(30);
+    }
   }
 }
 
 .summary-divider {
   @include m.divider-style(false);
-  flex-shrink: 0; 
+  flex-shrink: 0;
 }
 
 .summary-item {

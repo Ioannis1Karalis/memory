@@ -1,9 +1,8 @@
-@use '../abstracts/variables' as v;
-@use '../abstracts/functions' as f;
-@use '../abstracts/mixins' as m;
+@use "../abstracts/variables" as v;
+@use "../abstracts/functions" as f;
+@use "../abstracts/mixins" as m;
 
 .modal {
-  // --- BASE LAYOUT (Gilt für alle Themes) ---
   @include m.flex-center;
   position: fixed;
   inset: 0;
@@ -35,60 +34,5 @@
     display: flex;
     gap: f.rem(20);
     justify-content: center;
-  }
-
-  // --- THEME SPEZIFISCH ---
-  // Wir nutzen ".theme-name &", da das Theme am Parent (z.B. .game-page) hängt
-
-  .theme-code-vibes & {
-
-    .modal__overlay { 
-      background-color: rgba(0, 0, 0, 0.4); 
-    }
-    .modal__content {
-      background-color: white;
-    }
-    .modal__title {
-      font-family: v.$font-RedRose;
-      color: #2d2d2d;
-    }
-  }
-
-  .theme-gaming & {
-
-    .modal__overlay { 
-      background-color: rgba(26, 75, 82, 0.85); 
-    }
-
-    .modal__content {
-      background-color: #F0F6F9;
-      color: white; 
-      border-radius: f.rem(20);
-    }
-
-    .modal__title {
-      font-size: f.rem(28);
-      font-family: v.$font-Orbitron;
-      color: #294F60;
-      letter-spacing: f.rem(2);
-    }
-  }
-
-  .theme-foods & {
-
-    .modal__overlay { 
-      background-color: rgba(255, 249, 242, 0.7);
-    }
-
-    .modal__content {
-      background-color: #F6F6F6;
-      border-radius: f.rem(20);
-      box-shadow: 0 8px 30px rgba(243, 131, 45, 0.2);
-    }
-
-    .modal__title {
-      font-family: v.$font-Klee;
-      color: #A45212;
-    }
   }
 }
