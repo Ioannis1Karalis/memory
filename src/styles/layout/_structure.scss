@@ -1,0 +1,11 @@
+@use "../abstracts/mixins" as m;
+
+.end-screen {
+  @include m.flex-center;
+  position: fixed;
+  inset: 0;
+  flex-direction: column;
+  z-index: 200;
+  text-align: center;
+  overflow: hidden;
+}

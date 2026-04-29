@@ -1,6 +1,6 @@
-@use '../abstracts/variables' as v;
-@use '../abstracts/functions' as f;
-@use '../abstracts/mixins' as m;
+@use "../abstracts/variables" as v;
+@use "../abstracts/functions" as f;
+@use "../abstracts/mixins" as m;
 
 .game-page {
   height: 100vh;
@@ -9,205 +9,8 @@
   align-items: center;
   padding: f.rem(60);
 
-  // --- 1. THEME: CODE VIBES ---
-  &.theme-code-vibes { 
-    background-color: #2d2d2d; 
-    color: white; 
-    
-    .score-container {
-        background-color: #86E9D633;
-        padding: f.rem(16);
-        border-radius: f.rem(4);
-    }
-
-    &.is-blue-active {
-      .active-player-icon-box { 
-        padding: f.rem(8);
-      }
-      .current-player img { 
-        content: url('/assets/icons/blue-player.png'); 
-      }
-    }
-
-     &.is-orange-active {
-      .active-player-icon-box { 
-        padding: f.rem(8);
-      }
-
-      .current-player img { 
-        content: url('/assets/icons/orange-player.png'); 
-      }
-    }
-  }
-
-  // --- 2. THEME: GAMING ---
-  &.theme-gaming { 
-    background-color: #294F60; 
-    color: white; 
-
-    .game-page__header {
-      background-color: #FD96C933;
-      padding: f.rem(20);
-      border-radius: f.rem(10);
-    }
-
-    .score-container {
-      background-color: #FFFFFF;
-      padding: f.rem(8) f.rem(16);
-      border-radius: f.rem(10);
-      flex-direction: row-reverse;
-
-      .player {
-        font-size: 0; 
-        
-        span { 
-          font-size: f.rem(24);
-          font-family: v.$font-Orbitron;
-          font-weight: 900;
-        }
-
-        &--blue{
-            color: #097FC5;
-        }
-
-        &--blue img { 
-          content: url('/assets/icons/chess-pawn-blue.png'); 
-        }
-
-        &--orange img { 
-          content: url('/assets/icons/chess-pawn-orange.png'); 
-        }
-      }
-    }
-
-    .current-player {
-      font-family: v.$font-Orbitron;
-      font-size: f.rem(32);
-      letter-spacing: f.rem(2);
-
-      img {
-        filter: brightness(0) invert(1);
-        width: f.rem(32);
-        height: f.rem(32);
-        object-fit: contain;
-      }
-    }
-
-    &.is-blue-active {
-      .active-player-icon-box { 
-        padding: f.rem(8);
-        border-radius: f.rem(3); 
-        background-color: #31A5FF; 
-        transition: background-color 0.3s ease;
-
-      }
-      .current-player img { 
-        content: url('/assets/icons/chess-pawn-blue.png'); 
-      }
-    }
-    
-    &.is-orange-active {
-      .active-player-icon-box { 
-        padding: f.rem(8);
-        border-radius: f.rem(3); 
-        background-color: #EA6900; 
-        transition: background-color 0.3s ease;
-      }
-
-      .current-player img { 
-        content: url('/assets/icons/chess-pawn-orange.png'); 
-      }
-    }
-  }
-
-  // --- 3. THEME: FOODS ---
-  &.theme-foods { 
-    background-color: #ffffff; 
-    color: #A45212; 
-
-    .game-page__header {
-      background-color: #F0E5D9;
-      padding: f.rem(20);
-      border-radius: f.rem(10);
-    }
-
-    .score-container {
-      background-color: #FFFFFF;
-      padding: f.rem(12) f.rem(20);
-      border-radius: f.rem(10);
-      flex-direction: row-reverse;
-      gap: f.rem(40);
-
-      .player {
-        font-size: 0; 
-        gap: f.rem(4);
-
-        span { 
-          font-size: f.rem(30); 
-          font-family: v.$font-Delius; 
-        }
-
-        &--blue{
-            color: #097FC5;
-        }
-
-        &--blue img { 
-            content: url('/assets/icons/chess-pawn-blue.png'); 
-        }
-
-        &--orange{
-            color: #EA6900;
-        }
-
-        &--orange img { 
-            content: url('/assets/icons/chess-pawn-orange.png'); 
-        }
-      }
-    }
-
-    .current-player {
-      font-family: v.$font-Klee;
-      font-size: f.rem(32);
-      letter-spacing: f.rem(2);
-
-      img {
-        filter: brightness(0) invert(1);
-        width: f.rem(32);
-        height: f.rem(32);
-        object-fit: contain;
-      }
-    }
-
-    &.is-blue-active {
-      .active-player-icon-box { 
-        padding: f.rem(8);
-        border-radius: f.rem(8); 
-        background-color: #097FC5; 
-        transition: background-color 0.3s ease;
-
-      }
-      .current-player img { 
-        content: url('/assets/icons/chess-pawn-blue.png'); 
-      }
-    }
-    
-    &.is-orange-active {
-      .active-player-icon-box { 
-        padding: f.rem(8);
-        border-radius: f.rem(8); 
-        background-color: #EA6900; 
-        transition: background-color 0.3s ease;
-      }
-
-      .current-player img { 
-        content: url('/assets/icons/chess-pawn-orange.png'); 
-      }
-    }
-  }
-
-  // --- BASE STRUCTURE ---
   &__header {
-    display: grid; 
+    display: grid;
     grid-template-columns: 1fr auto 1fr;
     align-items: center;
     width: 100%;
@@ -227,16 +30,14 @@
       align-items: center;
       gap: f.rem(10);
 
-      &--blue { 
-        color: #2BB1FF; 
+      &--blue {
+        color: #2bb1ff;
       }
-
-      &--orange { 
-        color: #F58E39; 
+      &--orange {
+        color: #f58e39;
       }
-      
-      span { 
-        font-size: f.rem(20); 
+      span {
+        font-size: f.rem(20);
       }
     }
   }
@@ -261,10 +62,8 @@
 }
 
 .game-board {
-  display: grid; 
-  gap: f.rem(16);
-  width: 100%;
-  max-width: f.rem(600);
+  display: grid;
+  gap: f.rem(8);
   margin: 0 auto;
   padding: f.rem(20);
 }

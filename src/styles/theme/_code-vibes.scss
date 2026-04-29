@@ -1,0 +1,56 @@
+@use "../abstracts/functions" as f;
+@use "../abstracts/variables" as v;
+@use "../abstracts/mixins" as m;
+
+.theme-code-vibes {
+  &.game-page {
+    background-color: #2d2d2d;
+    color: white;
+
+    .score-container {
+      background-color: #86e9d633;
+      padding: f.rem(16);
+      border-radius: f.rem(4);
+    }
+
+    &.is-blue-active {
+      .active-player-icon-box {
+        padding: f.rem(8);
+      }
+      .current-player img {
+        content: url("/assets/icons/blue-player.png");
+      }
+    }
+
+    &.is-orange-active {
+      .active-player-icon-box {
+        padding: f.rem(8);
+      }
+      .current-player img {
+        content: url("/assets/icons/orange-player.png");
+      }
+    }
+  }
+}
+
+.end-screen {
+  background-color: var(--theme-bg-color);
+
+  &.theme-code-vibes {
+    .end-screen__winner-title {
+      font-family: v.$font-RedRose;
+      text-transform: uppercase;
+    }
+    .end-screen__winner-text {
+      font-family: v.$font-RedRose;
+      font-size: f.rem(40);
+      padding-top: f.rem(200);
+    }
+    .end-screen__confetti {
+      position: absolute;
+      inset: 0;
+      padding: 0 f.rem(40);
+      width: 100%;
+    }
+  }
+}

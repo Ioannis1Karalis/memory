@@ -1,46 +1,65 @@
-@forward 'abstracts/variables';
-@forward 'abstracts/functions';
-@forward 'abstracts/mixins';
+@forward "abstracts/variables";
+@forward "abstracts/functions";
+@forward "abstracts/mixins";
 
-@use 'base/typography';
-@use 'components/button';
-@use 'components/radio'; 
-@use 'pages/homescreen';
-@use 'pages/settings';
-@use 'pages/game';
-@use 'components/card';
-@use 'components/modal';
-@use 'components/end-screen';
+// abstracts
+@use "abstracts/variables";
+@use "abstracts/functions";
+@use "abstracts/mixins";
+
+// base
+@use "base/typography";
+
+// layout (Zuerst das Skelett)
+@use "layout/structure";
+
+// components (Dann die Bausteine)
+@use "components/button";
+@use "components/card";
+@use "components/end-screen"; // Die Component-Version
+@use "components/modal";
+@use "components/radio";
+
+// pages
+@use "pages/homescreen";
+@use "pages/settings";
+@use "pages/game";
+
+// theme (Ganz am Ende zum Überschreiben)
+@use "theme/code-vibes";
+@use "theme/gaming";
+@use "theme/foods";
 
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-html, body {
-    height: 100%;
-    width: 100%;
-    background-color: white;
+html,
+body {
+  height: 100%;
+  width: 100%;
+  background-color: white;
 }
 
 body {
-    min-height: 100vh;
-    overflow-x: hidden;
+  min-height: 100vh;
+  overflow-x: hidden;
 }
 
 .hidden {
   display: none !important;
 }
 
-.theme-code-vibes { 
-    --match-color: #4DD5BC; 
+.theme-code-vibes {
+  --match-color: #4dd5bc;
 }
 
-.theme-gaming { 
-    --match-color: #ED1B76; 
+.theme-gaming {
+  --match-color: #ed1b76;
 }
 
-.theme-foods { 
-    --match-color: #F3832D; 
+.theme-foods {
+  --match-color: #f3832d;
 }
