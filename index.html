@@ -13,13 +13,13 @@
   <div id="app">
     
     <section id="home-screen" class="home-screen">
-      <img src="/assets/icons/controller-bg.png" alt="Controller Background" class="home-screen__bg-icon"/>
+      <img src="assets/icons/controller-bg.png" alt="Controller Background" class="home-screen__bg-icon"/>
       <div class="home-screen__content">
         <p class="home-screen__subtitle">It's play time.</p>
         <h1 class="home-screen__title">Ready to play?</h1>
         <button class="btn btn--primary" id="start-game">
           <span class="btn__icon">
-            <img src="/assets/icons/controller.png" alt="Controller"/>
+            <img src="assets/icons/controller.png" alt="Controller"/>
           </span>
           Play <span class="btn__arrow">&rarr;</span>
         </button>
@@ -33,7 +33,7 @@
           <h2 class="settings-page__title">Settings</h2>
 
           <div class="option-group">
-            <h3 class="option-group__label"><img src="/assets/icons/palette.png" alt="Palette"/> Game themes</h3>
+            <h3 class="option-group__label"><img src="assets/icons/palette.png" alt="Palette"/> Game themes</h3>
             <label class="custom-radio">
               <input type="radio" name="theme" value="code-vibes"/>
               <span class="radio-text">Code vibes theme</span>
@@ -49,7 +49,7 @@
           </div>
 
           <div class="option-group">
-            <h3 class="option-group__label"><img src="/assets/icons/chess_pawn.png" alt="Chess Pawn"/> Choose player</h3>
+            <h3 class="option-group__label"><img src="assets/icons/chess_pawn.png" alt="Chess Pawn"/> Choose player</h3>
             <label class="custom-radio">
               <input type="radio" name="player" value="blue"/>
               <span class="radio-text">Blue</span>
@@ -61,7 +61,7 @@
           </div>
 
           <div class="option-group">
-            <h3 class="option-group__label"><img src="/assets/icons/board.png" alt="Board"/> Board size</h3>
+            <h3 class="option-group__label"><img src="assets/icons/board.png" alt="Board"/> Board size</h3>
             <label class="custom-radio">
               <input type="radio" name="size" value="16"/>
               <span class="radio-text">16 cards</span>
@@ -80,7 +80,7 @@
         <div class="settings-page__right-col">
           <div class="settings-page__preview">
             <div class="preview-box">
-              <img id="theme-preview" src="/assets/placeholder.png" alt="Theme Preview"/>
+              <img id="theme-preview" src="assets/placeholder.png" alt="Theme Preview"/>
             </div>
           </div>
 
@@ -93,7 +93,7 @@
 
             <button class="btn btn--secondary" id="start-actual-game" disabled>
               <span class="btn__icon">
-                <img src="/assets/icons/start.png" alt="start"/>
+                <img src="assets/icons/start.png" alt="start"/>
               </span>
               Start
             </button>
@@ -106,12 +106,12 @@
       <header class="game-page__header">
         <div class="score-container">
           <div class="player player--blue">
-            <img src="/assets/icons/blue-player.png" alt="blue player"> 
+            <img src="assets/icons/blue-player.png" alt="blue player"> 
               Blue <span id="score-blue">0</span>
             </div>
   
           <div class="player player--orange">
-            <img src="/assets/icons/orange-player.png" alt="orange player"> 
+            <img src="assets/icons/orange-player.png" alt="orange player"> 
               Orange <span id="score-orange">0</span>
           </div>
         </div>
@@ -119,12 +119,12 @@
         <div class="current-player">
             Current player: 
           <span class="active-player-icon-box">
-            <img src="/assets/icons/blue-player.png" alt="Current Player" id="active-player-img">
+            <img src="assets/icons/blue-player.png" alt="Current Player" id="active-player-img">
           </span>
         </div>
 
         <button class="btn--exit" id="exit-game">
-          <img src="/assets/icons/exit.png" alt="exit"> Exit game
+          <img src="assets/icons/exit.png" alt="exit"> Exit game
         </button>
       </header>
 
@@ -139,23 +139,23 @@
   
   <div class="end-screen__score-box">
     <div class="player player--blue">
-      <img src="/assets/icons/blue-player.png" alt="Blue Icon" class="score-icon">
+      <img src="assets/icons/blue-player.png" alt="Blue Icon" class="score-icon">
       Blue <span id="final-blue">0</span>
     </div>
     
     <div class="player player--orange">
-      <img src="/assets/icons/orange-player.png" alt="Orange Icon" class="score-icon">
+      <img src="assets/icons/orange-player.png" alt="Orange Icon" class="score-icon">
       Orange <span id="final-orange">0</span>
     </div>
   </div>
 </div>
 
   <div id="winner-view" class="end-screen__content hidden">
-    <img src="/assets/icons/confetti.png" alt="Confetti" class="end-screen__confetti">
+    <img src="assets/icons/confetti.png" alt="Confetti" class="end-screen__confetti">
     <p class="end-screen__winner-text">The winner is</p>
     <h2 id="winner-name" class="end-screen__winner-title">ORANGE PLAYER</h2>
     <div class="end-screen__winner-icon">
-      <img id="winner-pawn" src="/assets/icons/chess_pawn.png" alt="Pawn">
+      <img id="winner-pawn" src="assets/icons/chess_pawn.png" alt="Pawn">
     </div>
     <button id="btn-restart" class="btn--restart">Back to start</button>
   </div>

@@ -31,8 +31,8 @@ function createCard(val: number, theme: string): HTMLElement {
   const card = clone.querySelector('.card') as HTMLElement;
   const folder = THEME_FOLDER_MAP[theme];
   card.setAttribute('data-val', val.toString()); 
-  (card.querySelector('.img-pattern') as HTMLImageElement).src = `/assets/imgs/${folder}/cards/${theme}-front.png`;
-  (card.querySelector('.img-content') as HTMLImageElement).src = `/assets/imgs/${folder}/cards/${theme}-${val}.png`;
+  (card.querySelector('.img-pattern') as HTMLImageElement).src = `assets/imgs/${folder}/cards/${theme}-front.png`;
+  (card.querySelector('.img-content') as HTMLImageElement).src = `assets/imgs/${folder}/cards/${theme}-${val}.png`;
   card.onclick = () => onCardClick(card); 
   return card;
 }
