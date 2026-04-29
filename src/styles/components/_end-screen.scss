@@ -3,6 +3,7 @@
 @use '../abstracts/mixins' as m;
 
 .end-screen {
+  @include m.flex-center;
   position: fixed; 
   inset: 0; 
   background-color: var(--theme-bg-color); 
@@ -12,21 +13,29 @@
 
   &.theme-code-vibes {
     .end-screen{
-
       &__winner-title {
+        font-family: v.$font-RedRose;
         text-transform: uppercase;
       }
 
       &__winner-text {
         font-family: v.$font-RedRose;
         font-size: f.rem(40);
+        padding-top: 200px;
       }
+
+      &__confetti {
+        position: absolute;
+        inset: 0;
+        padding-left: f.rem(40);
+        padding-right: f.rem(40);
+        width: 100%;
+    }
     }
   }
 
   // --- THEME BEREICH ---
   &.theme-gaming {
-    @include m.flex-center;
 
     .end-screen{
       &__score-box {
@@ -188,7 +197,6 @@
     background-color: #F3832D;
   }
 
-  // Winner Screen wird weiß
   #winner-view {
     background-color: #ffffff;
   }
@@ -242,7 +250,6 @@
   &__winner-title {
     font-size: f.rem(60); 
     margin: f.rem(10) 0;
-    font-family: v.$font-Almarai; 
     font-weight: 800;
 
     &.text--orange { 
