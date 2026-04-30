@@ -179,37 +179,60 @@
 }
 
 .btn-modal {
-  font-family: v.$font-Almarai;
-  font-weight: 700;
-  font-size: f.rem(18);
   cursor: pointer;
   border: none;
-  transition: all 0.2s;
+  transition: all 0.3s ease-in-out;
   padding: f.rem(14) f.rem(28);
+  font-weight: 700;
+  text-align: center;
+  display: inline-block;
 
-  &--primary {
-    background-color: #64ccb4;
-    color: white;
-  }
+  .theme-code-vibes & {
+    font-family: v.$font-Almarai;
+    font-size: f.rem(18);
 
-  &--secondary {
-    background-color: #effcf9;
-    color: #64ccb4;
-    border: 2px solid #64ccb4;
-    padding: f.rem(10) f.rem(20);
+    &--primary {
+      background-color: #64ccb4;
+      color: white;
+      border: 1px solid transparent; 
+
+      &:hover {
+        box-shadow: 0 0 0 3px #4eb59d; 
+        background-color: #66CFBCB2;
+      }
+    }
+
+    &--secondary {
+      background-color: #effcf9;
+      color: #64ccb4;
+      border: 2px solid #64ccb4;
+      padding: f.rem(12) f.rem(26); 
+
+      &:hover {
+        box-shadow: 0 0 0 2px #64ccb4;
+      }
+    }
   }
 
   .theme-gaming & {
     font-family: v.$font-Orbitron;
     border-radius: f.rem(12);
-    font-size: 0;
+    font-size: 0; 
 
     &--primary {
       background-color: #ff2d78;
+      color: white;
+      border: 1px solid transparent;
 
       &::after {
         content: "No, back to game";
         font-size: f.rem(16);
+      }
+
+      &:hover {
+        color: #E71C4F;
+        box-shadow: 0 0 0 2px #e71c4f;
+        background-color: #F2C7DA14;
       }
     }
 
@@ -217,10 +240,15 @@
       background-color: #fceef5;
       color: #ff2d78;
       border: f.rem(2) solid #ff2d78;
+      padding: f.rem(12) f.rem(26);
 
       &::after {
         content: "Yes, quit game";
         font-size: f.rem(16);
+      }
+
+      &:hover {
+        box-shadow: 0 0 0 2px #ff2d78;
       }
     }
   }
@@ -232,10 +260,17 @@
 
     &--primary {
       background-color: #ffab3e;
+      color: white;
+      border: 1px solid transparent;
 
       &::after {
         content: "No, back to game";
         font-size: f.rem(18);
+      }
+
+      &:hover {
+        background-color: #F3832D;
+        box-shadow: 0 0 0 3px #e6962e;
       }
     }
 
@@ -243,10 +278,15 @@
       background-color: #fff9f2;
       color: #f3832d;
       border: 2px solid #f3832d;
+      padding: f.rem(12) f.rem(26);
 
       &::after {
         content: "Exit game";
         font-size: f.rem(18);
+      }
+
+      &:hover {
+        box-shadow: 0 0 0 2px #f3832d;
       }
     }
   }
