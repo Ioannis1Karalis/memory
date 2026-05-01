@@ -32,3 +32,32 @@ src/
     ├── main.ts      # UI & Event-Handling
     ├── game-logic.ts# Spiellogik & State
     └── constants.ts # Assets & Konfiguration
+
+
+⚙️ Setup & Installation
+Damit jeder – auch ohne Vorwissen – das Spiel starten kann, folge dieser Anleitung:
+
+1. Voraussetzungen
+Stelle sicher, dass du Node.js auf deinem Rechner installiert hast. Du kannst das prüfen, indem du node -v in dein Terminal eingibst. Falls nicht, lade es hier herunter: nodejs.org.
+
+2. Projekt herunterladen
+Klone das Repository oder lade den ZIP-Ordner herunter und entpacke ihn. Navigiere im Terminal in den entsprechenden Ordner:
+
+Bash
+cd dein-projekt-ordner
+3. Abhängigkeiten installieren
+Bevor das Spiel läuft, müssen die notwendigen Bibliotheken (Vite, Sass, TypeScript) geladen werden. Dieser Befehl erstellt den node_modules-Ordner:
+
+Bash
+npm install
+4. Entwicklungsserver starten
+Erwecke das Projekt mit folgendem Befehl zum Leben:
+
+Bash
+npm run dev
+5. Spiel im Browser öffnen
+Sobald der Befehl läuft, zeigt das Terminal eine Adresse an (meistens http://localhost:5173).
+
+Klicke mit Strg + Linksklick (Windows) oder Cmd + Linksklick (Mac) auf diesen Link.
+
+Das Spiel öffnet sich in deinem Browser. Wähle dein Theme und leg los!
