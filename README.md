@@ -20,6 +20,7 @@ An interactive memory game, developed with **TypeScript**, **Vite** and a modula
 
 ## 📂 Folder Structure (Highlights)
 
+```text
 src/
 ├── styles/
 │   ├── abstracts/   # Mixins, variables, functions
@@ -32,7 +33,7 @@ src/
     ├── main.ts      # UI & event handling
     ├── game-logic.ts# Game logic & state
     └── constants.ts # Assets & configuration
-
+```
 
 # ⚙️ Setup & Installation
 
