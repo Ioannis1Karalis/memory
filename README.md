@@ -20,7 +20,7 @@ An interactive memory game, developed with **TypeScript**, **Vite** and a modula
 
 ## 📂 Folder Structure (Highlights)
 
-````text
+```text
 src/
 ├── styles/
 │   ├── abstracts/   # Mixins, variables, functions
@@ -33,40 +33,42 @@ src/
     ├── main.ts      # UI & event handling
     ├── game-logic.ts# Game logic & state
     └── constants.ts # Assets & configuration
+```
 
 # ⚙️ Setup & Installation
+
 Follow these instructions to start the game on your local machine:
 
 1. Prerequisites
-Make sure you have Node.js installed on your computer. You can check this by typing node -v in your terminal. If it is not installed, download it from nodejs.org.
+   Make sure you have Node.js installed on your computer. You can check this by typing node -v in your terminal. If it is not installed, download it from nodejs.org.
 
 2. Download the Project
-Clone the repository or download and extract the ZIP folder. Navigate to the project folder in your terminal:
+   Clone the repository or download and extract the ZIP folder. Navigate to the project folder in your terminal:
 
 ```text
 Bash
 cd your-project-folder
+```
 
 3. Install Dependencies
-Before the game can run, you need to install the necessary libraries (Vite, Sass, TypeScript). This command creates the node_modules folder:
+   Before the game can run, you need to install the necessary libraries (Vite, Sass, TypeScript). This command creates the node_modules folder:
 
 ```text
 Bash
 npm install
+```
 
 4. Start the Development Server
-Launch the project with the following command:
+   Launch the project with the following command:
 
 ```text
 Bash
 npm run dev
+```
 
 5. Open the Game in Your Browser
-Once the server is running, the terminal will display a local address (usually http://localhost:5173).
+   Once the server is running, the terminal will display a local address (usually http://localhost:5173).
 
 Windows: Ctrl + Left Click on the link.
-
 Mac: Cmd + Left Click on the link.
-
 The game will open in your browser. Choose your theme and start playing!
-````
