@@ -3,57 +3,78 @@ import { PAWN_IMAGES, THEME_IMAGES, THEME_FOLDER_MAP } from './constants';
 import { state, getCardValues, resetGameState } from './game-logic';
 
 /**
-* Retrieves a DOM element by its unique identifier.
+* Safely updates the text content of a DOM element if it exists.
 * 
-* @param id - The ID of the element to retrieve.
-* @returns The HTMLElement if found, or null if it does not exist.
+* @param id - The unique identifier of the target element.
+* @param text - The string content to assign to the element.
 */
-function getEl(id: string): HTMLElement | null {
-  return document.getElementById(id);
+function setText(id: string, text: string): void {
+  const element = document.getElementById(id);
+  if (element) element.textContent = text;
+}
+
+/**
+* Safely updates the class name of a DOM element.
+* 
+* @param id - The unique identifier of the target element.
+* @param className - The full class string to be applied.
+*/
+function setClass(id: string, className: string): void {
+  const element = document.getElementById(id);
+  if (element) element.className = className;
 }
 
 /**
 * Finds the currently checked radio input within a specific group name.
 * 
 * @param name - The name attribute of the radio button group.
-* @returns The selected HTMLInputElement.
+* @returns The selected HTMLInputElement, or null if none is selected.
 */
-function queryRadio(name: string): HTMLInputElement {
-  return document.querySelector(`input[name="${name}"]:checked`) as HTMLInputElement;
+function queryRadio(name: string): HTMLInputElement | null {
+  return document.querySelector(`input[name="${name}"]:checked`);
 }
 
 /**
-* Updates the summary labels and the theme preview image on the settings screen
-* based on the currently selected options.
+* Updates the summary labels on the settings screen based on current selections.
+*/
+function updateSummary(): void {
+  const theme = queryRadio('theme');
+  const player = queryRadio('player');
+  const size = queryRadio('size');
+
+  const themeName = theme?.parentElement?.querySelector('.radio-text')?.textContent;
+  setText('sum-theme', themeName ?? 'Theme');
+  
+  const pVal = player?.value ?? 'Player';
+  setText('sum-player', `${pVal.charAt(0).toUpperCase() + pVal.slice(1)} Player`);
+  setText('sum-size', size ? `Board-${size.value} Cards` : 'Board size');
+}
+
+/**
+* Synchronizes the settings UI, updates previews, and manages button states.
 */
 function updateSettings(): void {
-  const themeInput = queryRadio('theme');
-  const playerInput = queryRadio('player');
-  const sizeInput = queryRadio('size');
+  const theme = queryRadio('theme');
+  const player = queryRadio('player');
+  const size = queryRadio('size');
 
-  if (getEl('sum-theme')) {
-    getEl('sum-theme')!.textContent = themeInput?.parentElement?.querySelector('.radio-text')?.textContent ?? 'Theme';
+  if (theme) setImg('theme-preview', THEME_IMAGES[theme.value]);
+  
+  const startBtn = document.getElementById('start-actual-game') as HTMLButtonElement | null;
+  if (startBtn) {
+    startBtn.disabled = !(theme && player && size);
   }
-  if (getEl('sum-player')) {
-    getEl('sum-player')!.textContent = playerInput ? `${playerInput.value.charAt(0).toUpperCase() + playerInput.value.slice(1)} Player` : 'Player';
-  }
-  if (getEl('sum-size')) {
-    getEl('sum-size')!.textContent = sizeInput ? `Board-${sizeInput.value} Cards` : 'Board size';
-  }
-  if (getEl('theme-preview') && themeInput) {
-    (getEl('theme-preview') as HTMLImageElement).src = THEME_IMAGES[themeInput.value];
-  }
-  (getEl('start-actual-game') as HTMLButtonElement).disabled = !(themeInput && playerInput && sizeInput);
+  updateSummary();
 }
 
 /**
 * Synchronizes the score display and current player turn indicators in the game UI.
 */
 function updateUI(): void {
-  getEl('score-blue')!.textContent = state.scores.blue.toString();
-  getEl('score-orange')!.textContent = state.scores.orange.toString();
+  setText('score-blue', state.scores.blue.toString());
+  setText('score-orange', state.scores.orange.toString());
   
-  const screen = getEl('game-screen');
+  const screen = document.getElementById('game-screen');
   if (screen) {
     screen.classList.remove('is-blue-active', 'is-orange-active');
     screen.classList.add(`is-${state.currentPlayer}-active`);
@@ -61,46 +82,64 @@ function updateUI(): void {
 }
 
 /**
-* Generates a card element, assigns its visual assets, and attaches event listeners.
+* Assigns visual assets to a card based on the current theme and card value.
+* 
+* @param card - The card HTMLElement to update.
+* @param val - The numerical identity of the card.
+* @param theme - The currently selected visual theme.
+*/
+function setupCardImages(card: HTMLElement, val: number, theme: string): void {
+  const folder = THEME_FOLDER_MAP[theme];
+  const front = card.querySelector('.img-pattern') as HTMLImageElement | null;
+  const back = card.querySelector('.img-content') as HTMLImageElement | null;
+  
+  if (front) front.src = `assets/imgs/${folder}/cards/${theme}-front.png`;
+  if (back) back.src = `assets/imgs/${folder}/cards/${theme}-${val}.png`;
+}
+
+/**
+* Generates a single card element and attaches its event listeners.
 * 
 * @param val - The numerical value representing the card's pair identity.
 * @param theme - The current visual theme name.
-* @returns A fully constructed card HTMLElement.
+* @returns A fully constructed card HTMLElement, or null if template is missing.
 */
-function createCard(val: number, theme: string): HTMLElement {
-  const temp = getEl('card-template') as HTMLTemplateElement;
-  const card = (temp.content.cloneNode(true) as DocumentFragment).querySelector('.card') as HTMLElement;
-  const folder = THEME_FOLDER_MAP[theme];
+function createCard(val: number, theme: string): HTMLElement | null {
+  const temp = document.getElementById('card-template') as HTMLTemplateElement | null;
+  if (!temp) return null;
   
+  const card = (temp.content.cloneNode(true) as DocumentFragment).querySelector('.card') as HTMLElement;
   card.setAttribute('data-val', val.toString()); 
-  (card.querySelector('.img-pattern') as HTMLImageElement).src = `assets/imgs/${folder}/cards/${theme}-front.png`;
-  (card.querySelector('.img-content') as HTMLImageElement).src = `assets/imgs/${folder}/cards/${theme}-${val}.png`;
+  setupCardImages(card, val, theme);
   
   card.onclick = () => onCardClick(card); 
   return card;
 }
 
 /**
-* Initializes a new game session, resets the game state, and renders the board.
+* Initializes a new game session, resets state, and renders the board.
 * 
 * @param theme - The name of the chosen design theme.
 * @param size - The total number of cards to generate.
-* @param startPlayer - The player ('blue' or 'orange') who makes the first move.
+* @param startPlayer - The player who makes the first move.
 */
 function initGame(theme: string, size: number, startPlayer: 'blue' | 'orange'): void {
   resetGameState(size, startPlayer);
   updateUI();
   
-  const board = getEl('game-board')!;
+  const board = document.getElementById('game-board');
+  if (!board) return;
+
   board.innerHTML = '';
   board.style.gridTemplateColumns = `repeat(${size === 16 ? 4 : 6}, 1fr)`;
-  
-  getCardValues(size).forEach(val => board.appendChild(createCard(val, theme)));
+  getCardValues(size).forEach(val => {
+    const card = createCard(val, theme);
+    if (card) board.appendChild(card);
+  });
 }
 
 /**
-* Handles logic for matching cards: updates scores, marks cards as matched,
-* and checks for victory conditions.
+* Handles logic for matching cards: updates scores and checks victory conditions.
 */
 function handleMatch(): void {
   state.flippedCards.forEach(card => card.classList.add('is-matched'));
@@ -115,8 +154,7 @@ function handleMatch(): void {
 }
 
 /**
-* Handles logic for non-matching cards: locks the board temporarily,
-* flips cards back, and switches to the next player.
+* Handles logic for non-matching cards: locks board and switches players.
 */
 function handleMismatch(): void {
   state.isLocked = true;
@@ -130,13 +168,13 @@ function handleMismatch(): void {
 }
 
 /**
-* Processes user interaction when a card is clicked. Manages flip state
-* and triggers match comparison when two cards are revealed.
+* Processes user interaction when a card is clicked.
 * 
 * @param card - The HTMLElement of the card that was clicked.
 */
 function onCardClick(card: HTMLElement): void {
-  if (state.isLocked || state.flippedCards.includes(card) || card.classList.contains('is-matched')) return;
+  const isInvalid = state.isLocked || state.flippedCards.includes(card);
+  if (isInvalid || card.classList.contains('is-matched')) return;
   
   card.classList.add('is-flipped');
   state.flippedCards.push(card);
@@ -148,137 +186,125 @@ function onCardClick(card: HTMLElement): void {
 }
 
 /**
-* Displays the final victory view, determines the winner based on scores,
-* and sets the correct player name and icon.
+* Displays the final victory view and sets correct winner assets.
 */
 function showWinner(): void {
-  const isBlueWinner = state.scores.blue > state.scores.orange;
-  getEl('winner-name')!.textContent = isBlueWinner ? 'Blue Player' : 'Orange Player';
-  getEl('winner-name')!.className = `end-screen__winner-title text--${isBlueWinner ? 'blue' : 'orange'}`;
-  (getEl('winner-pawn') as HTMLImageElement).src = isBlueWinner ? PAWN_IMAGES.blue : PAWN_IMAGES.orange;
+  const isBlue = state.scores.blue > state.scores.orange;
+  const color = isBlue ? 'blue' : 'orange';
   
-  getEl('game-over-view')?.classList.add('hidden');
-  getEl('winner-view')?.classList.remove('hidden');
+  setText('winner-name', isBlue ? 'Blue Player' : 'Orange Player');
+  const nameEl = document.getElementById('winner-name');
+  if (nameEl) nameEl.className = `end-screen__winner-title text--${color}`;
+  
+  setImg('winner-pawn', isBlue ? PAWN_IMAGES.blue : PAWN_IMAGES.orange);
+  document.getElementById('game-over-view')?.classList.add('hidden');
+  document.getElementById('winner-view')?.classList.remove('hidden');
 }
 
 /**
-* Initiates the game-ending sequence by showing the result screen
-* and calculating the final scores before revealing the winner.
+* Initiates the game-ending sequence and displays final scores.
 */
 function handleGameOver(): void {
-  getEl('game-over-view')?.classList.remove('hidden');
-  getEl('winner-view')?.classList.add('hidden');
-  getEl('final-blue')!.textContent = state.scores.blue.toString();
-  getEl('final-orange')!.textContent = state.scores.orange.toString();
+  setText('final-blue', state.scores.blue.toString());
+  setText('final-orange', state.scores.orange.toString());
   
-  const selectedTheme = queryRadio('theme').value;
-  getEl('end-screen')!.className = `end-screen theme-${selectedTheme}`;
-  getEl('end-screen')?.classList.remove('hidden');
+  const selectedTheme = queryRadio('theme')?.value ?? 'default';
+  setClass('end-screen', `end-screen theme-${selectedTheme}`);
+  
+  document.getElementById('end-screen')?.classList.remove('hidden');
+  document.getElementById('game-over-view')?.classList.remove('hidden');
+  document.getElementById('winner-view')?.classList.add('hidden');
   
   setTimeout(showWinner, 2000);
 }
 
 /**
-* Attaches a mouseenter event listener to a theme's parent label.
-* This task specifically handles updating the preview image when hovering.
+* Safely updates an image source and toggles its visibility.
 * 
-* @param radio - The radio input element representing a specific theme.
+* @param id - The ID of the image element.
+* @param src - The image source URL (empty string hides the element).
 */
-function attachThemeMouseEnterListener(radio: HTMLInputElement): void {
-  const parentLabel = radio.parentElement;
-
-  if (parentLabel) {
-    parentLabel.addEventListener('mouseenter', () => {
-      const previewImg = getEl('theme-preview') as HTMLImageElement;
-
-      if (previewImg) {
-        const hoveredThemeValue = radio.value;
-        const newImagePath = THEME_IMAGES[hoveredThemeValue];
-        previewImg.src = newImagePath;
-      }
-    });
-  }
+function setImg(id: string, src: string): void {
+  const element = document.getElementById(id) as HTMLImageElement | null;
+  if (!element) return;
+  
+  element.src = src;
+  element.style.display = src ? 'block' : 'none';
 }
 
 /**
-* Attaches a mouseleave event listener to a theme's parent label.
-* This task ensures the preview image reverts to the currently selected theme.
-* 
-* @param radio - The radio input element representing a specific theme.
-*/
-function attachThemeMouseLeaveListener(radio: HTMLInputElement): void {
-  const parentLabel = radio.parentElement;
-
-  if (parentLabel) {
-    parentLabel.addEventListener('mouseleave', () => {
-      const selectedThemeInput = queryRadio('theme');
-      const previewImg = getEl('theme-preview') as HTMLImageElement;
-
-      if (previewImg) {
-        const currentSelectedValue = selectedThemeInput?.value;
-        const fallbackPath = 'assets/placeholder.png';
-
-        previewImg.src = currentSelectedValue 
-          ? THEME_IMAGES[currentSelectedValue] 
-          : fallbackPath;
-      }
-    });
-  }
-}
-
-/**
-* Orchestrates the setup of hover effects for all theme radio buttons.
-* It iterates through the inputs and delegates the listener attachment tasks.
-*/
-function setupThemeHoverEffects(): void {
-  const themeSelector = 'input[name="theme"]';
-  const themeInputs = document.querySelectorAll<HTMLInputElement>(themeSelector);
-
-  themeInputs.forEach((radio) => {
-    attachThemeMouseEnterListener(radio);
-    attachThemeMouseLeaveListener(radio);
+ * Shows the theme preview image when hovering over a radio option.
+ */
+function themeEnter(radio: HTMLInputElement): void {
+  radio.parentElement?.addEventListener('mouseenter', () => {
+    setImg('theme-preview', THEME_IMAGES[radio.value]);
   });
 }
 
-setupThemeHoverEffects();
+/**
+* Reverts the preview to the selected theme or hides it if nothing is chosen.
+*/
+function themeLeave(radio: HTMLInputElement): void {
+  radio.parentElement?.addEventListener('mouseleave', () => {
+    const selected = queryRadio('theme');
+    setImg('theme-preview', selected ? THEME_IMAGES[selected.value] : '');
+  });
+}
 
-// --- LISTENERS ---
+/**
+* Orchestrates the setup of hover effects for all theme buttons.
+*/
+function setupHover(): void {
+  const inputs = document.querySelectorAll<HTMLInputElement>('input[name="theme"]');
+  inputs.forEach(radio => {
+    themeEnter(radio);
+    themeLeave(radio);
+  });
+}
+
+/**
+* Binds basic navigation and modal event listeners.
+*/
+function setupNav(): void {
+  document.getElementById('start-game')?.addEventListener('click', () => {
+    document.getElementById('home-screen')?.classList.add('hidden');
+    document.getElementById('settings-screen')?.classList.remove('hidden');
+  });
+
+  document.getElementById('exit-game')?.addEventListener('click', () => {
+    document.getElementById('exit-modal')?.classList.remove('hidden');
+  });
+
+  document.getElementById('btn-back-to-game')?.addEventListener('click', () => {
+    document.getElementById('exit-modal')?.classList.add('hidden');
+  });
+}
+
+/**
+* Handles the logic for starting the actual game board with selected options.
+*/
+function handleActualStart(): void {
+  const theme = queryRadio('theme')?.value ?? '';
+  const size = parseInt(queryRadio('size')?.value ?? '0');
+  const player = queryRadio('player')?.value as 'blue' | 'orange';
+
+  setClass('app', `theme-${theme}`);
+  setClass('game-screen', `game-page theme-${theme}`);
+  
+  initGame(theme, size, player);
+  document.getElementById('settings-screen')?.classList.add('hidden');
+  document.getElementById('game-screen')?.classList.remove('hidden');
+}
+
+setupHover();
+setupNav();
+
 document.querySelectorAll('input[type="radio"]').forEach(radio => {
   radio.addEventListener('change', updateSettings);
 });
 
-getEl('start-game')?.addEventListener('click', () => {
-  getEl('home-screen')?.classList.add('hidden');
-  getEl('settings-screen')?.classList.remove('hidden');
-});
-
-getEl('start-actual-game')?.addEventListener('click', () => {
-  const selectedTheme = queryRadio('theme').value;
-  const boardSize = parseInt(queryRadio('size').value);
-  const startingPlayer = queryRadio('player').value as 'blue' | 'orange';
-
-  getEl('app')!.className = `theme-${selectedTheme}`;
-  getEl('settings-screen')?.classList.add('hidden');
-  getEl('game-screen')?.classList.remove('hidden');
-  getEl('game-screen')!.className = `game-page theme-${selectedTheme}`;
-  
-  initGame(selectedTheme, boardSize, startingPlayer);
-});
-
-getEl('exit-game')?.addEventListener('click', () => getEl('exit-modal')?.classList.remove('hidden'));
-getEl('btn-back-to-game')?.addEventListener('click', () => getEl('exit-modal')?.classList.add('hidden'));
-
-getEl('btn-confirm-exit')?.addEventListener('click', () => {
-  getEl('exit-modal')?.classList.add('hidden'); 
-  getEl('game-screen')?.classList.add('hidden'); 
-  getEl('settings-screen')?.classList.remove('hidden'); 
-  getEl('game-board')!.innerHTML = '';
-});
-
-getEl('btn-restart')?.addEventListener('click', () => {
-  getEl('end-screen')?.classList.add('hidden'); 
-  getEl('game-screen')?.classList.add('hidden');
-  getEl('settings-screen')?.classList.remove('hidden');
-});
+document.getElementById('start-actual-game')?.addEventListener('click', handleActualStart);
+document.getElementById('btn-confirm-exit')?.addEventListener('click', () => location.reload());
+document.getElementById('btn-restart')?.addEventListener('click', () => location.reload());
 
 updateSettings();
