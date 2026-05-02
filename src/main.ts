@@ -306,7 +306,23 @@ document.querySelectorAll('input[type="radio"]').forEach(radio => {
 });
 
 document.getElementById('start-actual-game')?.addEventListener('click', handleActualStart);
-document.getElementById('btn-confirm-exit')?.addEventListener('click', () => location.reload());
-document.getElementById('btn-restart')?.addEventListener('click', () => location.reload());
+
+document.getElementById('btn-confirm-exit')?.addEventListener('click', () => {
+  document.getElementById('exit-modal')?.classList.add('hidden');
+  document.getElementById('game-screen')?.classList.add('hidden');
+  document.getElementById('settings-screen')?.classList.remove('hidden');
+  
+  const board = document.getElementById('game-board');
+  if (board) board.innerHTML = '';
+});
+
+document.getElementById('btn-restart')?.addEventListener('click', () => {
+  document.getElementById('end-screen')?.classList.add('hidden');
+  document.getElementById('game-screen')?.classList.add('hidden');
+  document.getElementById('settings-screen')?.classList.remove('hidden');
+  
+  const board = document.getElementById('game-board');
+  if (board) board.innerHTML = '';
+});
 
 updateSettings();
