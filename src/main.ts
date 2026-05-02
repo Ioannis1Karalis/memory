@@ -219,17 +219,19 @@ function handleGameOver(): void {
 }
 
 /**
-* Safely updates an image source and toggles its visibility.
-* 
-* @param id - The ID of the image element.
-* @param src - The image source URL (empty string hides the element).
-*/
+ * Safely updates an image source and toggles its visibility.
+ * Using an empty string for display prevents layout breaks.
+ * 
+ * @param id - The ID of the image element.
+ * @param src - The image source URL (empty string hides the element).
+ */
 function setImg(id: string, src: string): void {
   const element = document.getElementById(id) as HTMLImageElement | null;
-  if (!element) return;
-  
-  element.src = src;
-  element.style.display = src ? 'block' : 'none';
+  if (element) {
+    element.src = src;
+    // '' entfernt den Inline-Style und nutzt das CSS der Klasse/des Browsers
+    element.style.display = src ? '' : 'none';
+  }
 }
 
 /**

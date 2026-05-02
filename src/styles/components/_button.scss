@@ -133,29 +133,40 @@
   cursor: pointer;
   padding: f.rem(12) f.rem(24);
   transition: all 0.2s;
-  font-family: v.$font-RedRose;
-  font-size: f.rem(24);
-  background-color: rgba(134, 233, 214, 0.2);
-  border: 1px solid #4dd5bc;
-  color: white;
   text-align: center;
+  color: white;
+
+  .theme-code-vibes & {
+    font-family: v.$font-RedRose;
+    font-size: f.rem(24);
+    background-color: rgba(134, 233, 214, 0.2);
+    border: 1px solid #4dd5bc;
+
+    &:hover {
+      box-shadow: 0 0 0 2px #4dd5bc;
+    }
+  }
 
   .theme-gaming & {
     font-family: v.$font-Orbitron;
     background-color: #ed1b7614;
     border: f.rem(2) solid #e71c4f;
+    font-size: 0; 
     border-radius: f.rem(10);
-    font-size: 0;
 
-    img {
-      display: none;
+    img { 
+      display: none; 
     }
+
     &::after {
       content: "Home";
       font-size: f.rem(20);
-      color: white;
       display: block;
     }
+
+    &:hover {
+      box-shadow: 0 0 0 2px #e71c4f;
+    } 
   }
 
   .theme-foods & {
@@ -165,16 +176,18 @@
     border-radius: f.rem(10);
     font-size: 0;
 
-    img {
-      display: none;
-    }
+    img { display: none; }
 
     &::after {
       content: "Home";
       font-size: f.rem(16);
-      color: white;
       display: block;
     }
+
+    &:hover {
+        background-color: #F3832D;
+        box-shadow: 0 0 0 3px #e6962e;
+      }
   }
 }
 
